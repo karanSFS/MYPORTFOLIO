@@ -561,7 +561,7 @@ export const friendOneConfig: PortfolioConfig = {
     },
   ],
   socialLinks: [
-    { id: 'github', label: 'GitHub', href: 'https://github.com/karan2001' },
+    { id: 'github', label: 'GitHub', href: 'https://github.com/karanSFS' },
     { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/karan2001' },
     { id: 'email', label: 'Email', href: 'mailto:karanjangral60@gmail.com' },
   ],
