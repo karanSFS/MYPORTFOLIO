@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist/wght-italic.css';
+
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--portfolio-bg);
+  --color-surface: var(--portfolio-surface);
+  --color-surface-secondary: var(--portfolio-surface-2);
+  --color-primary: var(--portfolio-primary);
+  --color-secondary: var(--portfolio-secondary);
+  --color-fg: var(--portfolio-fg);
+  --color-muted: var(--portfolio-muted);
+  --color-line: var(--portfolio-line);
+  --color-success: var(--portfolio-success);
+}
+
+:root {
+  --portfolio-bg: #12110f;
+  --portfolio-surface: #1c1a17;
+  --portfolio-surface-2: #26221c;
+  --portfolio-primary: #d4784a;
+  --portfolio-secondary: #c4b59a;
+  --portfolio-fg: #f2ede6;
+  --portfolio-muted: #a39a8e;
+  --portfolio-line: rgb(242 237 230 / 0.1);
+  --portfolio-success: #7a9e6e;
+  --header-height: 4.25rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 0.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--portfolio-bg);
+  color: var(--portfolio-fg);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--portfolio-primary) 40%, transparent);
+  color: var(--portfolio-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--portfolio-primary);
+  outline-offset: 3px;
+}
+
+/* Warm paper wash — replaces cool neon grid */
+.atmosphere {
+  background:
+    radial-gradient(ellipse 80% 50% at 100% -10%, color-mix(in srgb, var(--portfolio-primary) 12%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, color-mix(in srgb, var(--portfolio-secondary) 8%, transparent), transparent 50%);
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html[data-theme='light'] .grain {
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+}
+
+html[data-theme='light'] .atmosphere {
+  background:
+    radial-gradient(ellipse 80% 50% at 100% -10%, color-mix(in srgb, var(--portfolio-primary) 10%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, color-mix(in srgb, var(--portfolio-secondary) 12%, transparent), transparent 50%);
+}
+
+.editorial-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--portfolio-secondary) 45%, transparent),
+    transparent
+  );
+}
