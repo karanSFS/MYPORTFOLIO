@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gursewak.dev/sitemap.xml
+Sitemap: https://i-am-karan-kumar.vercel.app/sitemap.xml
