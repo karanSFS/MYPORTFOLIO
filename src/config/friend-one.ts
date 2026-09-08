@@ -44,10 +44,10 @@ export const friendOneConfig: PortfolioConfig = {
     availabilityBadge: 'Open to opportunities',
     greeting: "Hi, I'm",
     description:
-      'I architect and ship production-grade SaaS platforms and AI-powered web applications — combining secure Next.js server actions, multi-tenant PostgreSQL/Supabase backends, Stripe billing, and reactive React frontends.',
-    primaryCta: { label: 'View selected work', href: '#projects' },
+      'I architect and ship production-grade web applications — from secure Next.js backends and multi-tenant PostgreSQL systems to AI integrations, Stripe billing, and reactive React frontends.',
+    primaryCta: { label: 'View My Work', href: '#projects' },
     secondaryCta: { label: 'Download Resume', href: '/resume.pdf' },
-    focusLine: 'Currently shipping production SaaS at Sunfocus Solutions',
+    focusLine: 'FULL-STACK ENGINEER · SAAS · AI · CLOUD',
   },
   about: {
     sectionNumber: '01',

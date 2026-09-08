@@ -30,7 +30,7 @@ export function ResumeActions({
         rel="noreferrer"
         onClick={onNavigate}
         className={cn(
-          'hidden min-h-11 items-center gap-1.5 rounded-lg border border-line px-3 text-sm text-muted transition-colors hover:border-secondary/40 hover:text-fg sm:inline-flex',
+          'hidden min-h-11 items-center gap-1.5 rounded-xl border border-line px-3 text-sm text-muted transition-colors hover:border-secondary/40 hover:text-fg sm:inline-flex',
           className,
         )}
       >
