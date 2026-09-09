@@ -212,7 +212,10 @@ export const friendOneConfig: PortfolioConfig = {
         ],
         screenshots: [
           '/images/projects/sossrank/cover.png',
-          '/images/projects/sossrank/screenshot-2.png',
+          '/images/projects/sossrank/keywords.png',
+          '/images/projects/sossrank/auth.png',
+          '/images/projects/sossrank/landing.png',
+          '/images/projects/sossrank/geogrid.png',
         ],
         metrics: [
           { label: 'Crawl Engine', value: 'Crawlee + Firecrawl' },

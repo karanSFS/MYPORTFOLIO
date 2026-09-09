@@ -59,7 +59,7 @@ function getProjectMeta(slug: string, liveUrl: string): ProjectMeta {
       glowClass: 'from-indigo-500/15 via-blue-500/5 to-transparent',
       badgeClass: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-300',
       borderHoverClass: 'hover:border-indigo-500/40 hover:shadow-[0_0_30px_-10px_rgba(99,102,241,0.25)]',
-      platformLabel: 'Security Intelligence SaaS',
+      platformLabel: 'AI SEO Platform',
       platformType: 'web',
     }
   }

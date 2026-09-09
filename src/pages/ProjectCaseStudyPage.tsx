@@ -599,13 +599,13 @@ export default function ProjectCaseStudyPage() {
             <X className="size-6" />
           </button>
           <div
-            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-white/10 bg-black p-2 shadow-2xl"
+            className="relative max-h-[90vh] max-w-[90vw] overflow-y-auto rounded-2xl border border-white/10 bg-black p-2 sm:p-4 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={activeModalImage}
               alt="Fullscreen UI view"
-              className="max-h-[85vh] max-w-[85vw] object-contain rounded-xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-xl mx-auto"
             />
           </div>
         </div>
