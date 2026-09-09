@@ -2,6 +2,7 @@ import {
   AlertCircle,
   ArrowLeft,
   ArrowRight,
+  Building2,
   CheckCircle2,
   ChevronsDown,
   Cpu,
@@ -218,6 +219,12 @@ export default function ProjectCaseStudyPage() {
           <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wider text-primary uppercase">
             {project.category}
           </span>
+          {project.company ? (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-300">
+              <Building2 className="size-3.5 text-sky-400" />
+              Associated with {project.company}
+            </span>
+          ) : null}
           {project.featured ? (
             <span className="rounded-full border border-secondary/30 bg-secondary/10 px-3 py-1 text-xs font-medium tracking-wider text-secondary uppercase">
               Featured Case Study
@@ -358,9 +365,17 @@ export default function ProjectCaseStudyPage() {
             </p>
 
             <div className="mt-6 rounded-2xl border border-line bg-background/50 p-5">
-              <p className="text-xs font-semibold tracking-wider text-secondary uppercase">
-                My Core Ownership
-              </p>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-xs font-semibold tracking-wider text-secondary uppercase">
+                  My Core Ownership
+                </p>
+                {project.company && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 text-xs font-medium text-sky-300">
+                    <Building2 className="size-3 text-sky-400" />
+                    {project.company}
+                  </span>
+                )}
+              </div>
               <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted">
                 {study.role}
               </p>

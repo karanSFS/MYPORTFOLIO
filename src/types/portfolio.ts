@@ -112,6 +112,7 @@ export interface Project {
   slug: string
   title: string
   category: string
+  company?: string
   filters: string[]
   shortDescription: string
   stack: string[]

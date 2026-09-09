@@ -165,6 +165,7 @@ export const friendOneConfig: PortfolioConfig = {
       slug: 'sossrank',
       title: 'SossRank',
       category: 'AI SEO & Local Business Optimization',
+      company: 'Sunfocus Solutions',
       filters: ['SaaS', 'AI', 'Full Stack'],
       shortDescription:
         'AI-powered SEO and local business optimization platform with automated crawling pipelines, multi-model AI audit generation via OpenRouter, Brevo email alerts, and recurring Stripe billing.',
@@ -179,7 +180,7 @@ export const friendOneConfig: PortfolioConfig = {
       caseStudy: {
         overview:
           'SossRank is an automated AI SEO & business optimization SaaS platform that analyzes websites, runs multi-model AI audits via OpenRouter, crawls web structures with Crawlee & Firecrawl, and generates tiered SEO reporting.',
-        role: 'Full-Stack Developer who independently architected the database schema, Next.js server-side APIs, automated web crawling engines, and AI evaluation pipelines.',
+        role: 'Full-Stack Developer at Sunfocus Solutions who independently architected the database schema, Next.js server-side APIs, automated web crawling engines, and AI evaluation pipelines.',
         roleTags: ['AI Workflows', 'Web Crawling', 'Database Architecture', 'Stripe Billing'],
         problem:
           'Local businesses and digital marketing agencies lack fast, automated tools to audit technical SEO, scrape competitor footprints, and generate actionable AI-driven optimization strategies.',
@@ -234,80 +235,10 @@ export const friendOneConfig: PortfolioConfig = {
       },
     },
     {
-      slug: 'market-ember',
-      title: 'Market Ember',
-      category: 'Multi-Tenant Business Administration',
-      filters: ['Mobile', 'SaaS', 'Full Stack', 'Frontend'],
-      shortDescription:
-        'Multi-tenant admin portal with Next.js Middleware RBAC, Supabase Auth, territory management workflows, Recharts analytics dashboards, and Firebase Cloud Messaging notifications.',
-      stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Redux Toolkit', 'Redux Persist', 'Firebase (FCM)', 'Recharts', 'Ant Design', 'Tailwind CSS'],
-      image: '/images/projects/market-ember/cover.png',
-      liveUrl: 'https://apps.apple.com/sg/app/market-ember/id6758372054',
-      githubUrl: '',
-      featured: true,
-      seoTitle: 'Market Ember – Multi-Tenant Admin Platform | Karan Kumar',
-      seoDescription:
-        'Case study of Market Ember, a multi-tenant business administration portal built with Next.js, Supabase, PostgreSQL, Redux Toolkit, and Firebase Cloud Messaging.',
-      caseStudy: {
-        overview:
-          'Market Ember is a central multi-tenant admin portal that manages mobile app operations, real-time territory workflows, role-based resource permissions, analytics visualization, and push notifications.',
-        role: 'Full-Stack Developer responsible for RBAC middleware, Supabase auth integration, territory management workflows, real-time data sync, and Recharts analytics dashboards.',
-        roleTags: ['Multi-Tenant RBAC', 'Real-Time Sync', 'Analytics Dashboards', 'FCM Push'],
-        problem:
-          'Field operations and administrative teams required synchronized real-time territory data, granular role-based permissions, and live push notifications without compromising system speed.',
-        solution:
-          'Built a secure Next.js portal utilizing Edge Middleware for RBAC, Supabase PostgreSQL for real-time synchronization, Redux Persist for state durability, and Firebase Cloud Messaging for instant mobile alerts.',
-        features: [
-          'Role-Based Access Control (RBAC) via Next.js Middleware and Supabase Auth',
-          'Interactive territory management and live field operations workflows',
-          'Dynamic Recharts analytics dashboards tracking business metrics and territory performance',
-          'Real-time push notification dispatch via Firebase Cloud Messaging (FCM)',
-          'Persistent offline-resilient client state powered by Redux Toolkit & Redux Persist',
-        ],
-        technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Redux Toolkit', 'Redux Persist', 'Firebase (FCM)', 'Recharts', 'Ant Design', 'Tailwind CSS'],
-        decisions: [
-          {
-            challenge: 'Complex role hierarchies across administrative tiers',
-            decision: 'Enforced server-side Next.js Middleware and database-level RLS policies',
-            outcome: 'Guaranteed role isolation and eliminated privilege escalation risks',
-          },
-          {
-            challenge: 'State loss during high-frequency admin navigation',
-            decision: 'Configured Redux Persist with selective blacklist/whitelist stores',
-            outcome: 'Smooth transitions and cached operational views with zero state resets',
-          },
-          {
-            challenge: 'High volume real-time updates from mobile devices',
-            decision: 'Optimized PostgreSQL subscription channels and batched dashboard updates',
-            outcome: 'Sub-second dashboard latency without overloading database connections',
-          },
-        ],
-        screenshots: [
-          '/images/projects/market-ember/cover.png',
-          '/images/projects/market-ember/screen-5.jpg',
-          '/images/projects/market-ember/screen-2.jpg',
-          '/images/projects/market-ember/screen-3.jpg',
-        ],
-        metrics: [
-          { label: 'Auth & Security', value: 'RBAC Middleware + RLS' },
-          { label: 'Notifications', value: 'Firebase FCM' },
-          { label: 'State Sync', value: 'Redux Persist + Real-time' },
-        ],
-        pullQuote: 'Scalable multi-tenant administration demands zero compromise on permission enforcement and real-time reliability.',
-        results: [
-          'Delivered a robust multi-tenant admin platform powering mobile operations and territory management',
-          'Implemented performant real-time analytics dashboards and cross-platform push notifications',
-        ],
-        learned: [
-          'Middleware-level auth checks coupled with database RLS provide bulletproof multi-tenant security',
-          'Carefully tuning state persistence prevents frontend bloat in high-velocity operational dashboards',
-        ],
-      },
-    },
-    {
       slug: 'docbot-one',
       title: 'DocBot.One',
       category: 'AI Medical Coding & Healthcare SaaS',
+      company: 'Sunfocus Solutions',
       filters: ['SaaS', 'AI', 'Full Stack'],
       shortDescription:
         'AI-powered clinical assistant and medical coding SaaS for healthcare providers, featuring automated ICD-10/HCC diagnostic coding, progress note parsing, multi-practice analytics, and HIPAA-compliant workflows.',
@@ -322,7 +253,7 @@ export const friendOneConfig: PortfolioConfig = {
       caseStudy: {
         overview:
           'DocBot.One is a specialized healthcare AI platform that automates ICD-10, HCC, and ACA diagnostic coding for physicians, EHR systems, and hospitals, analyzing patient progress notes in real time while maintaining strict HIPAA compliance.',
-        role: 'Full-Stack Developer responsible for clinical AI interfaces, progress note coding workflows, practice analytics modals, authentication flows, and Stripe billing.',
+        role: 'Full-Stack Developer at Sunfocus Solutions responsible for clinical AI interfaces, progress note coding workflows, practice analytics modals, authentication flows, and Stripe billing.',
         roleTags: ['Healthcare AI', 'Medical Coding (ICD-10/HCC)', 'Practice Analytics', 'HIPAA Workflows'],
         problem:
           'Physicians and clinical coders spend hours manually mapping complex progress notes to thousands of ICD-10 codes, risking costly billing rejections, undercoding, or compliance audits.',
@@ -445,6 +376,78 @@ export const friendOneConfig: PortfolioConfig = {
         learned: [
           'Prompt engineering for structured JSON output is essential for reliable multimodal UI experiences',
           'Client-side compression drastically enhances responsiveness on mobile web applications',
+        ],
+      },
+    },
+    {
+      slug: 'market-ember',
+      title: 'Market Ember',
+      category: 'Multi-Tenant Business Administration',
+      company: 'Sunfocus Solutions',
+      filters: ['Mobile', 'SaaS', 'Full Stack', 'Frontend'],
+      shortDescription:
+        'Multi-tenant admin portal with Next.js Middleware RBAC, Supabase Auth, territory management workflows, Recharts analytics dashboards, and Firebase Cloud Messaging notifications.',
+      stack: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Redux Toolkit', 'Redux Persist', 'Firebase (FCM)', 'Recharts', 'Ant Design', 'Tailwind CSS'],
+      image: '/images/projects/market-ember/cover.png',
+      liveUrl: 'https://apps.apple.com/sg/app/market-ember/id6758372054',
+      githubUrl: '',
+      featured: true,
+      seoTitle: 'Market Ember – Multi-Tenant Admin Platform | Karan Kumar',
+      seoDescription:
+        'Case study of Market Ember, a multi-tenant business administration portal built with Next.js, Supabase, PostgreSQL, Redux Toolkit, and Firebase Cloud Messaging.',
+      caseStudy: {
+        overview:
+          'Market Ember is a central multi-tenant admin portal that manages mobile app operations, real-time territory workflows, role-based resource permissions, analytics visualization, and push notifications.',
+        role: 'Full-Stack Developer at Sunfocus Solutions responsible for RBAC middleware, Supabase auth integration, territory management workflows, real-time data sync, and Recharts analytics dashboards.',
+        roleTags: ['Multi-Tenant RBAC', 'Real-Time Sync', 'Analytics Dashboards', 'FCM Push'],
+        problem:
+          'Field operations and administrative teams required synchronized real-time territory data, granular role-based permissions, and live push notifications without compromising system speed.',
+        solution:
+          'Built a secure Next.js portal utilizing Edge Middleware for RBAC, Supabase PostgreSQL for real-time synchronization, Redux Persist for state durability, and Firebase Cloud Messaging for instant mobile alerts.',
+        features: [
+          'Role-Based Access Control (RBAC) via Next.js Middleware and Supabase Auth',
+          'Interactive territory management and live field operations workflows',
+          'Dynamic Recharts analytics dashboards tracking business metrics and territory performance',
+          'Real-time push notification dispatch via Firebase Cloud Messaging (FCM)',
+          'Persistent offline-resilient client state powered by Redux Toolkit & Redux Persist',
+        ],
+        technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'PostgreSQL', 'Redux Toolkit', 'Redux Persist', 'Firebase (FCM)', 'Recharts', 'Ant Design', 'Tailwind CSS'],
+        decisions: [
+          {
+            challenge: 'Complex role hierarchies across administrative tiers',
+            decision: 'Enforced server-side Next.js Middleware and database-level RLS policies',
+            outcome: 'Guaranteed role isolation and eliminated privilege escalation risks',
+          },
+          {
+            challenge: 'State loss during high-frequency admin navigation',
+            decision: 'Configured Redux Persist with selective blacklist/whitelist stores',
+            outcome: 'Smooth transitions and cached operational views with zero state resets',
+          },
+          {
+            challenge: 'High volume real-time updates from mobile devices',
+            decision: 'Optimized PostgreSQL subscription channels and batched dashboard updates',
+            outcome: 'Sub-second dashboard latency without overloading database connections',
+          },
+        ],
+        screenshots: [
+          '/images/projects/market-ember/cover.png',
+          '/images/projects/market-ember/screen-5.jpg',
+          '/images/projects/market-ember/screen-2.jpg',
+          '/images/projects/market-ember/screen-3.jpg',
+        ],
+        metrics: [
+          { label: 'Auth & Security', value: 'RBAC Middleware + RLS' },
+          { label: 'Notifications', value: 'Firebase FCM' },
+          { label: 'State Sync', value: 'Redux Persist + Real-time' },
+        ],
+        pullQuote: 'Scalable multi-tenant administration demands zero compromise on permission enforcement and real-time reliability.',
+        results: [
+          'Delivered a robust multi-tenant admin platform powering mobile operations and territory management',
+          'Implemented performant real-time analytics dashboards and cross-platform push notifications',
+        ],
+        learned: [
+          'Middleware-level auth checks coupled with database RLS provide bulletproof multi-tenant security',
+          'Carefully tuning state persistence prevents frontend bloat in high-velocity operational dashboards',
         ],
       },
     },

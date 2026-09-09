@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink, Globe, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Building2, ExternalLink, Globe, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { portfolioConfig } from '../../config/index.ts'
 import type { Project } from '../../types/portfolio.ts'
@@ -195,10 +195,16 @@ export function ProjectCard({ project, featured = false, spotlight = false }: Pr
           <div className="lg:col-span-5 flex flex-col justify-between pt-2 lg:pt-1">
             <div>
               {/* Category & Status */}
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-[11px] font-bold tracking-[0.18em] text-primary uppercase">
                   {project.category}
                 </span>
+                {project.company && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 text-[11px] font-medium text-sky-300">
+                    <Building2 className="size-3 text-sky-400" />
+                    {project.company}
+                  </span>
+                )}
               </div>
 
               {/* Title */}
@@ -361,10 +367,16 @@ export function ProjectCard({ project, featured = false, spotlight = false }: Pr
 
         {/* Card Body */}
         <div className="flex min-w-0 flex-1 flex-col p-5 sm:p-6">
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="min-w-0 text-[11px] font-bold tracking-[0.16em] text-primary uppercase truncate">
               {project.category}
             </p>
+            {project.company && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-sky-500/30 bg-sky-500/10 px-2 py-0.5 text-[10px] font-medium text-sky-300 shrink-0">
+                <Building2 className="size-2.5 text-sky-400" />
+                {project.company}
+              </span>
+            )}
           </div>
 
           <h3 className="mt-2 text-xl font-semibold tracking-tight text-fg group-hover:text-primary transition-colors">
