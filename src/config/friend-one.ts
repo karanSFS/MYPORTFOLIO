@@ -171,7 +171,7 @@ export const friendOneConfig: PortfolioConfig = {
         'Full-stack SaaS platform built for doulas and agencies to manage the complete client journey from onboarding through pregnancy timelines, birth plans, labor tracking, and postpartum workflows.',
       stack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'Neon', 'Supabase', 'Vercel', 'OpenAI', 'Google Calendar API', 'Tailwind CSS'],
       image: '/images/projects/birthflow/cover.png',
-      liveUrl: 'https://staging-duola-seven.vercel.app',
+      liveUrl: 'https://www.birthflowapp.com/',
       githubUrl: '',
       featured: true,
       seoTitle: 'BirthFlow – Doula Care & Agency Management SaaS | Karan Kumar',

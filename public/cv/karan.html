@@ -31,7 +31,7 @@
             padding-bottom: 75px;
         }
 
-        /* Auto-hide internal docks and reset padding when inside an iframe */
+        /* Auto-hide internal docks when embedded in an iframe */
         body.is-embedded {
             padding-bottom: 0 !important;
             background-color: transparent !important;
@@ -41,12 +41,11 @@
             margin: 0 auto !important;
             box-shadow: none !important;
         }
-        body.is-embedded .cv-floating-dock,
-        body.is-embedded .edit-mode-bar {
+        body.is-embedded .cv-floating-dock {
             display: none !important;
         }
 
-        /* --- Page Container (A4 Proportions, Filled Naturally) --- */
+        /* --- Page Container (A4 Proportions) --- */
         .page {
             width: 210mm;
             min-height: 297mm;
@@ -323,7 +322,7 @@
             margin-bottom: 2px;
         }
 
-        /* --- Floating Actions Bar for Standalone View --- */
+        /* --- Floating Actions Bar (Bottom Dock) --- */
         .cv-floating-dock {
             position: fixed;
             bottom: 24px;
@@ -378,131 +377,6 @@
             color: #ffffff;
         }
 
-        .edit-btn {
-            background-color: #0d9488;
-            color: #ffffff;
-        }
-        .edit-btn:hover {
-            background-color: #0f766e;
-            transform: translateY(-1px);
-        }
-
-        /* --- Owner Edit Mode Sticky Header (Does NOT overlap content) --- */
-        .edit-mode-bar {
-            position: sticky;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #042f2e, #064e3b);
-            border-bottom: 1px solid #14b8a6;
-            color: #ffffff;
-            padding: 10px 20px;
-            z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            margin-bottom: 16px;
-        }
-
-        .edit-bar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .edit-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            font-weight: 700;
-            font-size: 9pt;
-            background: rgba(20, 184, 166, 0.25);
-            border: 1px solid #14b8a6;
-            padding: 4px 10px;
-            border-radius: 20px;
-            color: #5eead4;
-        }
-
-        .edit-pulse {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #2dd4bf;
-            box-shadow: 0 0 8px #2dd4bf;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .edit-hint {
-            font-size: 8.5pt;
-            color: #ccfbf1;
-            flex: 1;
-        }
-
-        .edit-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .bar-btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 8.5pt;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
-            transition: all 0.2s ease;
-        }
-
-        .save-btn {
-            background: #10b981;
-            color: #022c22;
-        }
-        .save-btn:hover { background: #34d399; }
-
-        .download-btn {
-            background: #38bdf8;
-            color: #082f49;
-        }
-        .download-btn:hover { background: #7dd3fc; }
-
-        .reset-btn {
-            background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-        }
-        .reset-btn:hover { background: rgba(255, 255, 255, 0.25); }
-
-        .lock-btn {
-            background: #f43f5e;
-            color: #ffffff;
-        }
-        .lock-btn:hover { background: #e11d48; }
-
-        /* --- In-Editing State Highlights --- */
-        body.is-editing .page {
-            outline: 2px dashed #0d9488;
-            outline-offset: 4px;
-        }
-
-        body.is-editing [contenteditable="true"]:hover {
-            outline: 1px dashed #0284c7;
-            background-color: rgba(2, 132, 199, 0.04);
-            cursor: text;
-        }
-
-        body.is-editing [contenteditable="true"]:focus {
-            outline: 1.5px solid #0284c7;
-            background-color: rgba(2, 132, 199, 0.07);
-        }
-
         /* --- Print Styles --- */
         @media print {
             @page {
@@ -524,31 +398,13 @@
                 border: none;
                 outline: none !important;
             }
-            .cv-floating-dock,
-            .edit-mode-bar {
+            .cv-floating-dock {
                 display: none !important;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- OWNER EDIT MODE TOP BAR (PIN PROTECTED, STICKY SO IT NEVER OVERLAPS RESUME CONTENT) -->
-    <header id="edit-mode-bar" class="edit-mode-bar" style="display: none;">
-        <div class="edit-bar-content">
-            <span class="edit-badge">
-                <span class="edit-pulse"></span>
-                Owner Edit Mode Active
-            </span>
-            <span class="edit-hint">Click anywhere on the resume below to edit text directly.</span>
-            <div class="edit-actions">
-                <button type="button" class="bar-btn save-btn" onclick="saveEdits()">💾 Save to Browser</button>
-                <button type="button" class="bar-btn download-btn" onclick="downloadUpdatedHTML()">📥 Download Updated HTML</button>
-                <button type="button" class="bar-btn reset-btn" onclick="resetToDefault()">↺ Reset Original</button>
-                <button type="button" class="bar-btn lock-btn" onclick="lockEditMode()">🔒 Lock & Done</button>
-            </div>
-        </div>
-    </header>
 
     <!-- RESUME PAGE CONTAINER -->
     <div class="page" id="resume-page">
@@ -783,7 +639,7 @@
                     <div class="proj-item">
                         <div class="proj-header">
                             <div class="proj-title-block">BirthFlow <span style="color:#aaa; font-weight:normal;">—</span> Full-Stack Doula Care & Agency Platform <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
-                            <a href="https://staging-duola-seven.vercel.app" class="proj-link" target="_blank">staging-duola-seven.vercel.app ↗</a>
+                            <a href="https://www.birthflowapp.com/" class="proj-link" target="_blank">birthflowapp.com ↗</a>
                         </div>
                         <div class="proj-stack">Stack: Next.js, React, TypeScript, PostgreSQL, Neon, Supabase, Vercel, OpenAI, Google Calendar API, Tailwind CSS</div>
                         <ul class="bullet-list">
@@ -855,147 +711,38 @@
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 <span>Portfolio</span>
             </a>
-            <button type="button" class="dock-btn primary-btn" onclick="printCV()" title="Print or Save as PDF">
+            <a href="/resume.pdf" download="Karan_Kumar_Resume.pdf" class="dock-btn primary-btn" title="Download PDF of Resume">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download PDF</span>
+            </a>
+            <button type="button" class="dock-btn secondary-btn" onclick="printCV()" title="Print or Save as PDF">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-                <span>Print PDF</span>
+                <span>Print</span>
             </button>
-            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download original or edited HTML">
+            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download HTML file">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 <span>Download HTML</span>
-            </button>
-            <button type="button" id="edit-toggle-btn" class="dock-btn edit-btn" onclick="toggleEditMode()" title="Only Karan's Access (Passcode protected)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <span id="edit-btn-text">Edit CV</span>
             </button>
         </div>
     </aside>
 
-    <!-- CLIENT LOGIC FOR PRINT, EDIT, PERSISTENCE & DOWNLOAD -->
     <script>
-        const STORAGE_KEY = 'karan_cv_custom_content_v1';
-        const AUTH_KEY = 'karan_cv_authenticated';
-        const CORRECT_PIN = 'karan2001';
-
-        // Detect if loaded inside an iframe (like in CvPage) and auto-hide inner floating docks
+        // Detect if loaded inside an iframe (like in /cv) and auto-hide inner floating dock
         if (window.self !== window.top) {
             document.body.classList.add('is-embedded');
         }
-
-        // Hydrate saved custom edits if present
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedHtml = localStorage.getItem(STORAGE_KEY);
-            if (savedHtml) {
-                const wrapper = document.getElementById('resume-wrapper');
-                if (wrapper) {
-                    wrapper.innerHTML = savedHtml;
-                }
-            }
-            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
-                enableEditMode();
-            }
-        });
 
         function printCV() {
             window.print();
         }
 
-        function toggleEditMode() {
-            if (document.body.classList.contains('is-editing')) {
-                lockEditMode();
-                return;
-            }
-            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
-                enableEditMode();
-                return;
-            }
-            const pin = prompt('Enter Owner Passcode to edit CV (Access restricted to Karan):');
-            if (!pin) return;
-            if (pin.trim() === CORRECT_PIN) {
-                sessionStorage.setItem(AUTH_KEY, 'true');
-                enableEditMode();
-            } else {
-                alert('Incorrect Passcode. Access is restricted to Karan.');
-            }
-        }
-
-        function enableEditMode() {
-            document.body.classList.add('is-editing');
-            const wrapper = document.getElementById('resume-wrapper');
-            if (wrapper) {
-                wrapper.setAttribute('contenteditable', 'true');
-            }
-            // Only show internal edit-mode-bar if NOT embedded inside iframe
-            if (window.self === window.top) {
-                const editBar = document.getElementById('edit-mode-bar');
-                if (editBar) editBar.style.display = 'block';
-            }
-            
-            const btnText = document.getElementById('edit-btn-text');
-            if (btnText) btnText.textContent = 'Lock CV';
-        }
-
-        function lockEditMode() {
-            document.body.classList.remove('is-editing');
-            const wrapper = document.getElementById('resume-wrapper');
-            if (wrapper) {
-                wrapper.removeAttribute('contenteditable');
-            }
-            const editBar = document.getElementById('edit-mode-bar');
-            if (editBar) editBar.style.display = 'none';
-
-            const btnText = document.getElementById('edit-btn-text');
-            if (btnText) btnText.textContent = 'Edit CV';
-        }
-
-        function saveEdits() {
-            const wrapper = document.getElementById('resume-wrapper');
-            if (wrapper) {
-                localStorage.setItem(STORAGE_KEY, wrapper.innerHTML);
-                alert('✓ Changes saved to your browser! Your edits will be remembered.');
-            }
-        }
-
-        function resetToDefault() {
-            if (confirm('Are you sure you want to reset all edits back to the default CV content?')) {
-                localStorage.removeItem(STORAGE_KEY);
-                location.reload();
-            }
-        }
-
         function downloadHTML() {
-            downloadUpdatedHTML();
-        }
-
-        function downloadUpdatedHTML() {
-            // Save state first
-            const wrapper = document.getElementById('resume-wrapper');
-            if (wrapper) {
-                localStorage.setItem(STORAGE_KEY, wrapper.innerHTML);
-            }
-
-            // Clone document to produce a clean standalone HTML download
-            const docClone = document.documentElement.cloneNode(true);
-
-            // Clean up temporary edit attributes from clone
-            docClone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
-            const editBarClone = docClone.querySelector('#edit-mode-bar');
-            if (editBarClone) editBarClone.style.display = 'none';
-            const bodyClone = docClone.querySelector('body');
-            if (bodyClone) {
-                bodyClone.classList.remove('is-editing');
-                bodyClone.classList.remove('is-embedded');
-            }
-
-            const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
-            const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
+            a.href = '/cv/karan.html';
             a.download = 'karan.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
     </script>
 </body>

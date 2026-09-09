@@ -25,7 +25,7 @@ export function ResumeActions({
   if (compact) {
     return (
       <a
-        href={resumeUrl}
+        href="/cv"
         target="_blank"
         rel="noreferrer"
         onClick={onNavigate}
@@ -49,7 +49,7 @@ export function ResumeActions({
       )}
     >
       <Button
-        href={resumeUrl}
+        href="/cv"
         size={size}
         variant="secondary"
         className={layout === 'stack' ? 'w-full' : 'w-full sm:w-auto'}
@@ -61,14 +61,16 @@ export function ResumeActions({
         {cta.openResume}
       </Button>
       <Button
-        href={resumeUrl}
+        href="/resume.pdf"
         size={size}
         variant="ghost"
         className={cn(
           'border border-line',
           layout === 'stack' ? 'w-full' : 'w-full sm:w-auto',
         )}
-        download
+        download="Karan_Kumar_Resume.pdf"
+        target="_blank"
+        rel="noreferrer"
         onClick={onNavigate}
       >
         <Download className="size-4" aria-hidden="true" />
