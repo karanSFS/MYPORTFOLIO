@@ -1,6 +1,6 @@
 # Portfolio
 
-Config-driven personal portfolio for a frontend developer. Swap the active profile to reuse the same UI for another person.
+Personal portfolio for Karan Kumar (Full-Stack Developer), powered by Vite, React, TypeScript, and Tailwind CSS.
 
 ## Scripts
 
@@ -11,24 +11,24 @@ npm run build
 npm run preview
 ```
 
-## Configure a person
+## Configuration
 
-1. Edit `src/config/gursewak.ts` (or copy `friend-one.ts` / `friend-two.ts`).
-2. Fill `email`, `resumeUrl`, `socialLinks`, project `liveUrl` / `githubUrl`, and images.
-3. Place your PDF at `public/resume.pdf` and set `resumeUrl: '/resume.pdf'` (enables Open + Download).
-4. Add a [Web3Forms](https://web3forms.com) access key.
+1. Portfolio data is defined in `src/config/friend-one.ts`.
+2. Update `email`, `resumeUrl`, `socialLinks`, project `liveUrl` / `githubUrl`, and images as needed.
+3. PDF resume is located at `public/resume.pdf` with `resumeUrl: '/resume.pdf'`.
+4. Add a [Web3Forms](https://web3forms.com) access key in `.env`.
 
 ```bash
 cp .env.example .env
 ```
 
 ```
-VITE_PORTFOLIO_ID=gursewak
+VITE_PORTFOLIO_ID=friend-one
 VITE_WEB3FORMS_ACCESS_KEY=your_key
-VITE_SITE_URL=https://your-domain.com
+VITE_SITE_URL=https://karan.dev
 ```
 
-Switch profiles with `VITE_PORTFOLIO_ID=friend-one` or `friend-two`. Accent colors live in each config file. Visitors can switch light/dark via the navbar toggle (preference is saved in `localStorage`).
+Accent colors and branding live in `src/config/friend-one.ts`. Visitors can switch light/dark via the navbar toggle (preference is saved in `localStorage`).
 
 ## Deploy
 

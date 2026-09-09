@@ -1,11 +1,11 @@
 {
-  "name": "Gursewak Singh",
-  "short_name": "GS",
-  "description": "Frontend Developer portfolio — React, TypeScript, and production SaaS.",
+  "name": "Karan Kumar",
+  "short_name": "KK",
+  "description": "Full-Stack Developer with a proven record of architecting and shipping production-grade SaaS platforms, AI-powered web applications, PostgreSQL/Supabase multi-tenant systems, Stripe billing, and web crawling engines.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#12110F",
-  "theme_color": "#12110F",
+  "background_color": "#0B0F17",
+  "theme_color": "#0B0F17",
   "icons": [
     {
       "src": "/favicon.svg",

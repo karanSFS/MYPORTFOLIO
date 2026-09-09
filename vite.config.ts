@@ -5,21 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
 import { friendOneConfig } from './src/config/friend-one.ts'
-import { friendTwoConfig } from './src/config/friend-two.ts'
-import { gursewakConfig } from './src/config/gursewak.ts'
 import type { PortfolioConfig } from './src/types/portfolio.ts'
 
 const root = fileURLToPath(new URL('.', import.meta.url))
-
-const profiles: Record<string, PortfolioConfig> = {
-  gursewak: gursewakConfig,
-  'friend-one': friendOneConfig,
-  'friend-two': friendTwoConfig,
-}
-
-function resolveConfig(id?: string) {
-  return profiles[id ?? 'friend-one'] ?? friendOneConfig
-}
 
 function escapeHtml(value: string) {
   return value
@@ -138,7 +126,7 @@ ${projectUrls.join('\n')}
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, root, '')
-  const config = resolveConfig(env.VITE_PORTFOLIO_ID)
+  const config = friendOneConfig
   const siteOrigin = env.VITE_SITE_URL || config.seo.siteUrl
 
   return {
