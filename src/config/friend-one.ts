@@ -162,6 +162,81 @@ export const friendOneConfig: PortfolioConfig = {
       },
     },
     {
+      slug: 'birthflow',
+      title: 'BirthFlow',
+      category: 'Full-Stack Doula Care & Agency Platform',
+      company: 'Sunfocus Solutions',
+      filters: ['SaaS', 'Full Stack', 'Frontend'],
+      shortDescription:
+        'Full-stack SaaS platform built for doulas and agencies to manage the complete client journey from onboarding through pregnancy timelines, birth plans, labor tracking, and postpartum workflows.',
+      stack: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'Neon', 'Supabase', 'Vercel', 'OpenAI', 'Google Calendar API', 'Tailwind CSS'],
+      image: '/images/projects/birthflow/cover.png',
+      liveUrl: 'https://staging-duola-seven.vercel.app',
+      githubUrl: '',
+      featured: true,
+      seoTitle: 'BirthFlow – Doula Care & Agency Management SaaS | Karan Kumar',
+      seoDescription:
+        'Case study of BirthFlow, a full-stack SaaS platform for doulas and agencies built with Next.js, PostgreSQL, Neon, Supabase, OpenAI, and Vercel.',
+      caseStudy: {
+        overview:
+          'BirthFlow is a full-stack SaaS platform built specifically for doulas and doula agencies to manage the complete client journey from initial onboarding through pregnancy, birth, and postpartum care. The platform unifies CRM, client onboarding, dynamic forms, conditional workflows, scheduling, pregnancy timelines, birth plans, labor tracking, secure communication, agency management, backup doula coordination, billing, and postpartum care into one cohesive system.',
+        role: 'Full-Stack Developer at Sunfocus Solutions who architected and built full-stack functionality using Next.js across client and server layers, designed PostgreSQL workflows with Neon and Supabase, and integrated OpenAI and Google services.',
+        roleTags: ['Full-Stack Architecture', 'Neon PostgreSQL', 'Doula CRM & Workflows', 'OpenAI Integrations', 'Supabase Real-Time'],
+        problem:
+          'Doulas and birth agencies relied on fragmented tools like spreadsheets, generic booking apps, paper birth plans, and disjointed messaging, leading to missed milestones, scheduling conflicts, and compromised client data during critical labor events.',
+        solution:
+          'Architected a centralized Next.js platform integrating multi-tenant agency administration, dynamic form builder with conditional logic, pregnancy milestone timelines, cervical vitals labor tracking, backup doula scheduling, and OpenAI-assisted communication.',
+        features: [
+          'Full-stack Next.js architecture with server actions and edge-optimized API handlers',
+          'PostgreSQL relational data workflows utilizing Neon serverless DB and Supabase services',
+          'Dynamic form builder with conditional logic, client assignments, and automated auto-replies',
+          'Pregnancy-based milestone timelines and real-time cervical dilation/vitals tracking',
+          'Calendar and scheduling system with availability rules, backup doula coordination, and Google Calendar sync',
+          'Integrated OpenAI communication assistants and multi-channel email/SMS parent outreach',
+          'End-to-end production deployment on Vercel with automated CI/CD and production monitoring',
+        ],
+        technologies: ['Next.js', 'React', 'TypeScript', 'PostgreSQL', 'Neon', 'Supabase', 'Vercel', 'OpenAI', 'Google Calendar API', 'Tailwind CSS'],
+        decisions: [
+          {
+            challenge: 'Complex multi-stage pregnancy and postpartum data models with variable client journeys',
+            decision: 'Designed relational schema architectures on Neon PostgreSQL supported by Supabase real-time subscriptions',
+            outcome: 'Flexible workflow engine supporting custom milestone templates, client assignments, and real-time status sync',
+          },
+          {
+            challenge: 'High-stakes labor logging requiring immutable data capture under active birth conditions',
+            decision: 'Engineered two-phase draft-and-publish labor logs with client-side locking and optimistic UI updates',
+            outcome: 'Zero data loss during hospital/home births with guaranteed tamper-proof clinical records',
+          },
+          {
+            challenge: 'Dynamic scheduling conflicts between primary doulas and on-call backup providers',
+            decision: 'Built automated availability engines with bidirectional Google Calendar integration and conflict detection',
+            outcome: 'Eliminated double-booking and automated seamless handover to backup doulas without manual administrative overhead',
+          },
+        ],
+        screenshots: [
+          '/images/projects/birthflow/cover.png',
+          '/images/projects/birthflow/dashboard.png',
+          '/images/projects/birthflow/journey.png',
+          '/images/projects/birthflow/lead-form.png',
+          '/images/projects/birthflow/scheduler.png',
+        ],
+        metrics: [
+          { label: 'Architecture', value: 'Full-Stack Next.js' },
+          { label: 'Database', value: 'Neon PostgreSQL' },
+          { label: 'Workflows', value: 'Milestone Timelines' },
+        ],
+        pullQuote: 'A centralized digital platform replaces fragmented tools, empowering birth workers to deliver seamless, compassionate care.',
+        results: [
+          'Engineered and deployed an all-in-one doula care platform managing clients, teams, appointments, and workflows',
+          'Delivered mission-critical labor tracking, dynamic form automation, and calendar coordination in production',
+        ],
+        learned: [
+          'Mission-critical healthcare platforms require resilient draft states and strict data integrity boundaries',
+          'Neon PostgreSQL serverless branching accelerates schema iterations without risking production stability',
+        ],
+      },
+    },
+    {
       slug: 'sossrank',
       title: 'SossRank',
       category: 'AI SEO & Local Business Optimization',

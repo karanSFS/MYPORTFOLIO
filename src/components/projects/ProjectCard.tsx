@@ -53,6 +53,16 @@ function getProjectMeta(slug: string, liveUrl: string): ProjectMeta {
       platformType: 'web',
     }
   }
+  if (slug === 'birthflow') {
+    return {
+      accentColor: '#0d9488',
+      glowClass: 'from-teal-500/15 via-emerald-500/5 to-transparent',
+      badgeClass: 'border-teal-500/30 bg-teal-500/10 text-teal-300',
+      borderHoverClass: 'hover:border-teal-500/40 hover:shadow-[0_0_30px_-10px_rgba(13,148,136,0.25)]',
+      platformLabel: 'Live SaaS Platform',
+      platformType: 'web',
+    }
+  }
   if (slug === 'sossrank') {
     return {
       accentColor: '#6366f1',

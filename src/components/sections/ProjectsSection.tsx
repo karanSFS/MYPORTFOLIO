@@ -15,9 +15,8 @@ export function ProjectsSection() {
     return projects.filter((project) => project.filters.includes(active))
   }, [active, projects])
 
-  // If odd number of projects (e.g. 1, 3, 5), feature the first as a wide Spotlight showcase
-  // so the grid stays balanced with zero empty trailing holes.
-  const hasSpotlight = visible.length % 2 !== 0
+  // Feature the flagship project (Syncro) as a wide Spotlight showcase on top, or when odd number of projects
+  const hasSpotlight = visible.length > 0 && (visible[0]?.slug === 'syncro' || visible.length % 2 !== 0)
   const spotlightProject = hasSpotlight ? visible[0] : null
   const gridProjects = hasSpotlight ? visible.slice(1) : visible
 
