@@ -24,65 +24,83 @@
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: var(--text-color);
-            background-color: #3e4245; 
-            line-height: 1.28;
-            font-size: 8.7pt; 
+            background-color: #383c3f; 
+            line-height: 1.33;
+            font-size: 8.8pt; 
             min-height: 100vh;
-            padding-bottom: 70px;
+            padding-bottom: 75px;
         }
 
-        /* --- Page Container (A4 Size) --- */
+        /* Auto-hide internal docks and reset padding when inside an iframe */
+        body.is-embedded {
+            padding-bottom: 0 !important;
+            background-color: transparent !important;
+            min-height: auto !important;
+        }
+        body.is-embedded .page {
+            margin: 0 auto !important;
+            box-shadow: none !important;
+        }
+        body.is-embedded .cv-floating-dock,
+        body.is-embedded .edit-mode-bar {
+            display: none !important;
+        }
+
+        /* --- Page Container (A4 Proportions, Filled Naturally) --- */
         .page {
             width: 210mm;
             min-height: 297mm;
-            margin: 20px auto;
+            margin: 24px auto;
             background: var(--bg-color);
-            padding: 7mm 9.5mm; 
-            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            padding: 9.5mm 12mm; 
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
             position: relative;
             box-sizing: border-box;
-            transition: box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         /* --- Two Column Layout --- */
         .resume-wrapper {
             display: flex;
-            gap: 13px;
+            gap: 14px;
             height: 100%;
+            flex: 1;
         }
 
         .left-column {
-            width: 31%; 
+            width: 30.5%; 
             display: flex;
             flex-direction: column;
-            justify-content: baseline;
-            gap: 10px;
+            justify-content: space-between;
             border-right: 1px solid var(--light-gray);
-            padding-right: 9px;
+            padding-right: 11px;
         }
 
         .right-column {
-            width: 69%; 
+            width: 69.5%; 
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: space-between;
+            padding-left: 2px;
         }
 
         /* --- Typography & Headings --- */
         h1 {
-            font-size: 18.5pt; 
+            font-size: 20pt; 
             color: var(--primary-color);
             text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 2px;
-            letter-spacing: 0.5px;
+            line-height: 1.05;
+            margin-bottom: 3px;
+            letter-spacing: 0.6px;
         }
 
         .subtitle {
-            font-size: 7.6pt; 
+            font-size: 7.9pt; 
             color: var(--accent-color);
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             word-spacing: 1.2px;
         }
         
@@ -93,18 +111,18 @@
 
         .summary {
             text-align: justify;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             color: #444;
-            font-size: 7.1pt;
-            line-height: 1.26;
+            font-size: 7.3pt;
+            line-height: 1.34;
         }
 
         h2 {
-            font-size: 8.6pt; 
+            font-size: 8.9pt; 
             color: var(--primary-color);
             border-bottom: 1.5px solid var(--accent-color);
             padding-bottom: 2px;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
@@ -128,8 +146,8 @@
         .contact-item {
             display: flex;
             align-items: flex-start;
-            gap: 5px;
-            margin-bottom: 2.5px;
+            gap: 6px;
+            margin-bottom: 4.5px;
         }
         
         .contact-icon {
@@ -138,7 +156,7 @@
         }
 
         .contact-text .label {
-            font-size: 5.8pt;
+            font-size: 6pt;
             text-transform: uppercase;
             color: #666;
             font-weight: 700;
@@ -147,19 +165,19 @@
         }
         
         .contact-text .value {
-            font-size: 7.1pt;
+            font-size: 7.3pt;
             font-weight: 500;
         }
 
         .skill-category {
-            margin-bottom: 3.5px;
+            margin-bottom: 5.5px;
         }
 
         .skill-title {
             font-weight: 600;
             color: var(--accent-color);
-            margin-bottom: 1.5px;
-            font-size: 7.1pt;
+            margin-bottom: 2px;
+            font-size: 7.3pt;
             display: flex;
             align-items: center;
             gap: 4px;
@@ -175,30 +193,30 @@
         .pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 2.5px;
+            gap: 3px;
         }
 
         .pill {
             background-color: var(--light-gray);
             border: 1px solid var(--border-color);
-            padding: 1.2px 3.2px;
+            padding: 1.5px 3.8px;
             border-radius: 3px;
-            font-size: 6.2pt;
+            font-size: 6.4pt;
             color: #333;
             white-space: nowrap;
         }
 
         .bullet-list {
             padding-left: 12px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .bullet-list li {
-            margin-bottom: 1.8px;
+            margin-bottom: 2.6px;
             color: #444;
             padding-left: 1px;
-            font-size: 6.9pt;
-            line-height: 1.26;
+            font-size: 7.1pt;
+            line-height: 1.32;
         }
 
         .bullet-list li::marker {
@@ -206,36 +224,38 @@
         }
         
         .edu-item {
-            margin-bottom: 3.5px;
+            margin-bottom: 5px;
         }
         
         .edu-degree {
             font-weight: bold;
             color: var(--primary-color);
-            font-size: 7.1pt;
+            font-size: 7.3pt;
         }
         
         .edu-school {
             color: #555;
-            font-size: 6.6pt;
+            font-size: 6.8pt;
+            line-height: 1.25;
+            margin-top: 1px;
         }
 
         /* --- Right Column Elements --- */
         .exp-item {
-            margin-bottom: 4px;
+            margin-bottom: 7px;
         }
 
         .exp-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             width: 100%;
         }
 
         .exp-title-block {
             font-weight: 700;
-            font-size: 8.1pt; 
+            font-size: 8.4pt; 
             color: var(--primary-color);
             flex: 1; 
         }
@@ -246,7 +266,7 @@
         }
 
         .exp-meta {
-            font-size: 6.6pt;
+            font-size: 6.8pt;
             color: #666;
             white-space: nowrap;
             flex-shrink: 0; 
@@ -255,41 +275,41 @@
         }
 
         .proj-item {
-            margin-bottom: 3.8px;
+            margin-bottom: 6px;
         }
 
         .proj-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1px;
+            margin-bottom: 1.5px;
             width: 100%;
         }
 
         .proj-title-block {
             font-weight: 700;
-            font-size: 8pt; 
+            font-size: 8.3pt; 
             color: var(--primary-color);
             flex: 1; 
         }
 
         .proj-tag {
             display: inline-block;
-            font-size: 5.6pt;
+            font-size: 5.8pt;
             font-weight: 600;
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
-            padding: 0.5px 3px;
+            padding: 0.5px 3.5px;
             border-radius: 8px;
             background: #f0f8ff;
             vertical-align: middle;
-            margin-left: 3px;
+            margin-left: 4px;
             position: relative;
             top: -1px;
         }
 
         .proj-link {
-            font-size: 6.6pt;
+            font-size: 6.8pt;
             font-weight: 500;
             white-space: nowrap;
             flex-shrink: 0; 
@@ -297,13 +317,13 @@
         }
 
         .proj-stack {
-            font-size: 6.2pt;
+            font-size: 6.4pt;
             color: #555;
             font-weight: 600;
-            margin-bottom: 1.5px;
+            margin-bottom: 2px;
         }
 
-        /* --- Floating Actions Bar --- */
+        /* --- Floating Actions Bar for Standalone View --- */
         .cv-floating-dock {
             position: fixed;
             bottom: 24px;
@@ -316,11 +336,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(18, 22, 28, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(18, 22, 28, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             padding: 7px 12px;
             border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(12px);
         }
 
@@ -350,11 +370,11 @@
         }
 
         .secondary-btn {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.12);
             color: #e2e8f0;
         }
         .secondary-btn:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.22);
             color: #ffffff;
         }
 
@@ -367,9 +387,9 @@
             transform: translateY(-1px);
         }
 
-        /* --- Owner Edit Mode Top Banner --- */
+        /* --- Owner Edit Mode Sticky Header (Does NOT overlap content) --- */
         .edit-mode-bar {
-            position: fixed;
+            position: sticky;
             top: 0;
             left: 0;
             right: 0;
@@ -379,6 +399,7 @@
             padding: 10px 20px;
             z-index: 2000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            margin-bottom: 16px;
         }
 
         .edit-bar-content {
@@ -496,10 +517,10 @@
             }
             .page {
                 margin: 0;
-                padding: 7mm 9.5mm;
+                padding: 9.5mm 12mm;
                 box-shadow: none;
                 width: 210mm;
-                height: 297mm;
+                min-height: 297mm;
                 border: none;
                 outline: none !important;
             }
@@ -512,36 +533,14 @@
 </head>
 <body>
 
-    <!-- FLOATING ACTION DOCK -->
-    <aside class="cv-floating-dock" aria-label="Resume Actions">
-        <div class="dock-pill">
-            <a href="/" class="dock-btn secondary-btn" title="Back to Portfolio">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                <span>Portfolio</span>
-            </a>
-            <button type="button" class="dock-btn primary-btn" onclick="printCV()" title="Print or Save as PDF">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-                <span>Print PDF</span>
-            </button>
-            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download original or edited HTML">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Download HTML</span>
-            </button>
-            <button type="button" id="edit-toggle-btn" class="dock-btn edit-btn" onclick="toggleEditMode()" title="Only Karan's Access (PIN protected)">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <span id="edit-btn-text">Edit CV</span>
-            </button>
-        </div>
-    </aside>
-
-    <!-- OWNER EDIT MODE TOP BAR (PIN PROTECTED) -->
+    <!-- OWNER EDIT MODE TOP BAR (PIN PROTECTED, STICKY SO IT NEVER OVERLAPS RESUME CONTENT) -->
     <header id="edit-mode-bar" class="edit-mode-bar" style="display: none;">
         <div class="edit-bar-content">
             <span class="edit-badge">
                 <span class="edit-pulse"></span>
                 Owner Edit Mode Active
             </span>
-            <span class="edit-hint">Click anywhere on the resume to edit text directly.</span>
+            <span class="edit-hint">Click anywhere on the resume below to edit text directly.</span>
             <div class="edit-actions">
                 <button type="button" class="bar-btn save-btn" onclick="saveEdits()">💾 Save to Browser</button>
                 <button type="button" class="bar-btn download-btn" onclick="downloadUpdatedHTML()">📥 Download Updated HTML</button>
@@ -718,7 +717,7 @@
             <!-- RIGHT COLUMN -->
             <main class="right-column">
                 
-                <!-- HEADER -->
+                <!-- HEADER (NAME & SUMMARY - ALWAYS FULLY VISIBLE AT TOP) -->
                 <header>
                     <h1>Karan Kumar</h1>
                     <div class="subtitle">
@@ -849,12 +848,38 @@
         </div>
     </div>
 
+    <!-- FLOATING ACTION DOCK (STANDALONE VIEW ONLY) -->
+    <aside class="cv-floating-dock" aria-label="Resume Actions">
+        <div class="dock-pill">
+            <a href="/" class="dock-btn secondary-btn" title="Back to Portfolio">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Portfolio</span>
+            </a>
+            <button type="button" class="dock-btn primary-btn" onclick="printCV()" title="Print or Save as PDF">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                <span>Print PDF</span>
+            </button>
+            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download original or edited HTML">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download HTML</span>
+            </button>
+            <button type="button" id="edit-toggle-btn" class="dock-btn edit-btn" onclick="toggleEditMode()" title="Only Karan's Access (Passcode protected)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span id="edit-btn-text">Edit CV</span>
+            </button>
+        </div>
+    </aside>
+
     <!-- CLIENT LOGIC FOR PRINT, EDIT, PERSISTENCE & DOWNLOAD -->
     <script>
         const STORAGE_KEY = 'karan_cv_custom_content_v1';
         const AUTH_KEY = 'karan_cv_authenticated';
-        const CORRECT_PIN = 'karan'; // Passcode for Karan's direct access (can also use 'karan2025')
-        const ALT_PIN = 'karan2025';
+        const CORRECT_PIN = 'karan2001';
+
+        // Detect if loaded inside an iframe (like in CvPage) and auto-hide inner floating docks
+        if (window.self !== window.top) {
+            document.body.classList.add('is-embedded');
+        }
 
         // Hydrate saved custom edits if present
         document.addEventListener('DOMContentLoaded', () => {
@@ -885,7 +910,7 @@
             }
             const pin = prompt('Enter Owner Passcode to edit CV (Access restricted to Karan):');
             if (!pin) return;
-            if (pin.trim().toLowerCase() === CORRECT_PIN || pin.trim() === ALT_PIN) {
+            if (pin.trim() === CORRECT_PIN) {
                 sessionStorage.setItem(AUTH_KEY, 'true');
                 enableEditMode();
             } else {
@@ -899,8 +924,11 @@
             if (wrapper) {
                 wrapper.setAttribute('contenteditable', 'true');
             }
-            const editBar = document.getElementById('edit-mode-bar');
-            if (editBar) editBar.style.display = 'block';
+            // Only show internal edit-mode-bar if NOT embedded inside iframe
+            if (window.self === window.top) {
+                const editBar = document.getElementById('edit-mode-bar');
+                if (editBar) editBar.style.display = 'block';
+            }
             
             const btnText = document.getElementById('edit-btn-text');
             if (btnText) btnText.textContent = 'Lock CV';
@@ -953,7 +981,10 @@
             const editBarClone = docClone.querySelector('#edit-mode-bar');
             if (editBarClone) editBarClone.style.display = 'none';
             const bodyClone = docClone.querySelector('body');
-            if (bodyClone) bodyClone.classList.remove('is-editing');
+            if (bodyClone) {
+                bodyClone.classList.remove('is-editing');
+                bodyClone.classList.remove('is-embedded');
+            }
 
             const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
             const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });

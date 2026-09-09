@@ -9,15 +9,14 @@ import {
   Sparkles,
   Unlock,
 } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/common/Button.tsx'
 import { Seo } from '../components/common/Seo.tsx'
 import { portfolioConfig } from '../config/index.ts'
 
 const STORAGE_KEY = 'karan_cv_custom_content_v1'
-const CORRECT_PIN = 'karan'
-const ALT_PIN = 'karan2025'
+const CORRECT_PIN = 'karan2001'
 
 export default function CvPage() {
   const { personal } = portfolioConfig
@@ -29,36 +28,52 @@ export default function CvPage() {
   const [enteredPin, setEnteredPin] = useState('')
   const [pinError, setPinError] = useState(false)
   const [savedSuccess, setSavedSuccess] = useState(false)
-  const [iframeLoaded, setIframeLoaded] = useState(false)
+  const [iframeHeight, setIframeHeight] = useState('1180px')
 
-  // Propagate edit mode into iframe when ready
-  useEffect(() => {
-    if (!iframeLoaded || !iframeRef.current?.contentWindow) return
+  const adjustIframe = useCallback(() => {
     try {
-      const doc = iframeRef.current.contentDocument
+      const doc = iframeRef.current?.contentDocument
       if (!doc) return
-      if (isEditing) {
-        doc.body.classList.add('is-editing')
-        const wrapper = doc.getElementById('resume-wrapper')
-        if (wrapper) wrapper.setAttribute('contenteditable', 'true')
-        const bar = doc.getElementById('edit-mode-bar')
-        if (bar) bar.style.display = 'block'
-      } else {
-        doc.body.classList.remove('is-editing')
-        const wrapper = doc.getElementById('resume-wrapper')
-        if (wrapper) wrapper.removeAttribute('contenteditable')
-        const bar = doc.getElementById('edit-mode-bar')
-        if (bar) bar.style.display = 'none'
+      doc.body.classList.add('is-embedded')
+
+      // Ensure inner duplicate bars are hidden inside our studio
+      const innerEditBar = doc.getElementById('edit-mode-bar')
+      if (innerEditBar) innerEditBar.style.display = 'none'
+      const innerDock = doc.querySelector('.cv-floating-dock') as HTMLElement | null
+      if (innerDock) innerDock.style.display = 'none'
+
+      const wrapper = doc.getElementById('resume-wrapper')
+      if (wrapper) {
+        if (isEditing) {
+          doc.body.classList.add('is-editing')
+          wrapper.setAttribute('contenteditable', 'true')
+        } else {
+          doc.body.classList.remove('is-editing')
+          wrapper.removeAttribute('contenteditable')
+        }
       }
+
+      // Compute natural scroll height so iframe has zero nested scrollbar
+      const pageEl = doc.getElementById('resume-page')
+      const targetHeight = Math.max(
+        pageEl ? pageEl.scrollHeight : 0,
+        doc.documentElement.scrollHeight,
+        doc.body.scrollHeight,
+        1100,
+      )
+      setIframeHeight(`${targetHeight + 20}px`)
     } catch {
-      // Cross-origin fallback (same-origin expected here)
+      // Cross-origin fallback
     }
-  }, [isEditing, iframeLoaded])
+  }, [isEditing])
+
+  useEffect(() => {
+    adjustIframe()
+  }, [adjustIframe])
 
   const handleUnlock = (e: React.FormEvent) => {
     e.preventDefault()
-    const cleanPin = enteredPin.trim().toLowerCase()
-    if (cleanPin === CORRECT_PIN || cleanPin === ALT_PIN) {
+    if (enteredPin.trim() === CORRECT_PIN) {
       sessionStorage.setItem('karan_cv_authenticated', 'true')
       setIsEditing(true)
       setShowPinModal(false)
@@ -79,46 +94,54 @@ export default function CvPage() {
   }
 
   const handleDownloadHtml = () => {
-    if (iframeRef.current?.contentDocument) {
-      const doc = iframeRef.current.contentDocument
-      const wrapper = doc.getElementById('resume-wrapper')
-      if (wrapper) {
-        localStorage.setItem(STORAGE_KEY, wrapper.innerHTML)
+    try {
+      const doc = iframeRef.current?.contentDocument
+      if (doc) {
+        const wrapper = doc.getElementById('resume-wrapper')
+        if (wrapper) {
+          localStorage.setItem(STORAGE_KEY, wrapper.innerHTML)
+        }
+
+        // Clone document and strip temporary editing artifacts
+        const docClone = doc.documentElement.cloneNode(true) as HTMLElement
+        docClone.querySelectorAll('[contenteditable]').forEach((el) => el.removeAttribute('contenteditable'))
+        const editBar = docClone.querySelector('#edit-mode-bar') as HTMLElement | null
+        if (editBar) editBar.style.display = 'none'
+        const bodyClone = docClone.querySelector('body')
+        if (bodyClone) {
+          bodyClone.classList.remove('is-editing')
+          bodyClone.classList.remove('is-embedded')
+        }
+
+        const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML
+        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'karan.html'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      } else {
+        window.open('/cv/karan.html', '_blank')
       }
-
-      // Clone document and clean editing artifacts
-      const docClone = doc.documentElement.cloneNode(true) as HTMLElement
-      docClone.querySelectorAll('[contenteditable]').forEach((el) => el.removeAttribute('contenteditable'))
-      const editBar = docClone.querySelector('#edit-mode-bar') as HTMLElement | null
-      if (editBar) editBar.style.display = 'none'
-      const bodyClone = docClone.querySelector('body')
-      if (bodyClone) bodyClone.classList.remove('is-editing')
-
-      const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML
-      const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'karan.html'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    } else {
-      // Direct link fallback
+    } catch {
       window.open('/cv/karan.html', '_blank')
     }
   }
 
   const handleSaveToBrowser = () => {
-    if (iframeRef.current?.contentDocument) {
-      const doc = iframeRef.current.contentDocument
-      const wrapper = doc.getElementById('resume-wrapper')
+    try {
+      const doc = iframeRef.current?.contentDocument
+      const wrapper = doc?.getElementById('resume-wrapper')
       if (wrapper) {
         localStorage.setItem(STORAGE_KEY, wrapper.innerHTML)
         setSavedSuccess(true)
         setTimeout(() => setSavedSuccess(false), 2500)
       }
+    } catch {
+      // Ignore
     }
   }
 
@@ -137,7 +160,7 @@ export default function CvPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#2d3134] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#242729] flex flex-col font-sans">
       <Seo
         title={`${personal.name} - Interactive CV & Resume`}
         description={`Interactive CV of ${personal.name}, ${personal.jobTitle}. View, edit, print, and download.`}
@@ -145,7 +168,7 @@ export default function CvPage() {
       />
 
       {/* Top Header Control Bar */}
-      <header className="sticky top-0 z-40 bg-[#161a1d]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 py-3 shadow-md flex items-center justify-between gap-3">
+      <header className="sticky top-0 z-40 bg-[#14171a]/95 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 py-3 shadow-md flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Link
             to="/"
@@ -155,17 +178,18 @@ export default function CvPage() {
             Back to Portfolio
           </Link>
           <span className="hidden sm:inline text-xs font-semibold tracking-wider text-slate-400 uppercase">
-            Resume / CV Studio
+            CV Studio
           </span>
         </div>
 
         <div className="flex items-center gap-2">
           {isEditing && (
-            <div className="hidden lg:flex items-center gap-2 mr-2">
+            <div className="flex items-center gap-2 mr-2">
               <button
                 type="button"
                 onClick={handleSaveToBrowser}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors shadow-sm"
+                title="Save changes to local browser storage"
               >
                 {savedSuccess ? <Check className="size-3.5" /> : null}
                 {savedSuccess ? 'Saved!' : 'Save Edits'}
@@ -173,7 +197,7 @@ export default function CvPage() {
               <button
                 type="button"
                 onClick={handleReset}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
+                className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
                 title="Reset to Original"
               >
                 <RotateCcw className="size-3.5" />
@@ -220,14 +244,14 @@ export default function CvPage() {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 border border-rose-500/40 transition-colors"
             >
               <Lock className="size-3.5" />
-              Lock & Exit
+              Lock CV
             </button>
           ) : (
             <button
               type="button"
               onClick={() => setShowPinModal(true)}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-teal-500/20 text-teal-300 hover:bg-teal-500/30 border border-teal-500/40 transition-colors"
-              title="Karan's Access Only (PIN protected)"
+              title="Karan's Access Only (Passcode: karan2001)"
             >
               <Unlock className="size-3.5" />
               Edit CV
@@ -241,20 +265,20 @@ export default function CvPage() {
         <div className="bg-gradient-to-r from-teal-950 via-emerald-950 to-teal-950 border-b border-teal-500/30 px-4 py-2 text-center text-xs text-teal-200 flex items-center justify-center gap-2">
           <Sparkles className="size-3.5 text-teal-400 animate-pulse" />
           <span className="font-semibold">Owner Live Edit Mode Active:</span>
-          <span>Click on any text in the resume below to edit directly. Click "Save Edits" or "Download HTML" to save your updates!</span>
+          <span>Click directly on the Name, Heading, Summary, or any bullet to edit. Use "Save Edits" or "Download HTML" to export!</span>
         </div>
       )}
 
-      {/* Main Iframe Viewer / Live Canvas */}
-      <main className="flex-1 w-full flex justify-center items-start p-2 sm:p-6 overflow-auto">
-        <div className="w-full max-w-[220mm] bg-white rounded-lg shadow-2xl overflow-hidden border border-white/10">
+      {/* Main Content Area - Fully visible top name and heading with zero overlapping bars */}
+      <main className="flex-1 w-full flex justify-center items-start py-6 px-3 sm:px-6">
+        <div className="w-full max-w-[214mm] bg-white rounded-md shadow-2xl overflow-hidden border border-black/10">
           <iframe
             ref={iframeRef}
             src="/cv/karan.html"
             title="Karan Kumar CV"
             className="w-full border-none block"
-            style={{ minHeight: '1200px', height: '100vh' }}
-            onLoad={() => setIframeLoaded(true)}
+            style={{ height: iframeHeight, minHeight: '1080px' }}
+            onLoad={adjustIframe}
           />
         </div>
       </main>
@@ -268,7 +292,7 @@ export default function CvPage() {
               <h3 className="text-base font-semibold text-white">Unlock CV Editor</h3>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed mb-4">
-              Direct in-place editing is restricted to Karan. Enter your passcode to unlock editing mode and download updated versions.
+              Direct in-place editing is restricted to Karan. Enter your passcode to unlock live editing mode and download updated versions.
             </p>
 
             <form onSubmit={handleUnlock} className="space-y-4">
