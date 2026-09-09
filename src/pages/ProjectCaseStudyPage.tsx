@@ -3,14 +3,20 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  ChevronsDown,
   Cpu,
   ExternalLink,
   Layers,
   Lightbulb,
   Maximize2,
+  Minimize2,
+  MoveDown,
+  RotateCcw,
   Sparkles,
   Trophy,
   X,
+  ZoomIn,
+  ZoomOut,
 } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
@@ -23,6 +29,93 @@ import { ProjectCover } from '../components/projects/ProjectCover.tsx'
 import { NotFoundPage } from '../pages/NotFoundPage.tsx'
 import { projectJsonLd } from '../utils/seo.ts'
 import { cn } from '../utils/cn.ts'
+function ScreenshotItem({
+  src,
+  title,
+  index,
+  total,
+  onClick,
+}: {
+  src: string
+  title: string
+  index: number
+  total: number
+  onClick: () => void
+}) {
+  const [isTall, setIsTall] = useState(false)
+
+  return (
+    <div
+      onClick={onClick}
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-line/80 bg-[#000000] p-3 shadow-xl transition-all duration-300 hover:border-primary/50 hover:shadow-2xl"
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#000000] flex items-center justify-center">
+        {/* Ambient glow behind */}
+        <img
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-20 blur-xl scale-110 pointer-events-none"
+        />
+
+        {isTall ? (
+          <div className="relative z-10 w-full h-full overflow-hidden flex items-start justify-center">
+            <img
+              src={src}
+              alt={`${title} screenshot ${index + 1}`}
+              loading="lazy"
+              onLoad={(e) => {
+                const img = e.currentTarget
+                if (img.naturalHeight > img.naturalWidth * 1.15) {
+                  setIsTall(true)
+                }
+              }}
+              className="w-full h-auto object-top transition-transform duration-[6000ms] ease-in-out group-hover:-translate-y-[calc(100%-100%)]"
+            />
+          </div>
+        ) : (
+          <img
+            src={src}
+            alt={`${title} screenshot ${index + 1}`}
+            loading="lazy"
+            onLoad={(e) => {
+              const img = e.currentTarget
+              if (img.naturalHeight > img.naturalWidth * 1.15) {
+                setIsTall(true)
+              }
+            }}
+            className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        )}
+
+        {/* Top-right badge if tall/scrollable */}
+        {isTall && (
+          <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1.5 rounded-full border border-primary/40 bg-black/80 px-2.5 py-1 text-[10px] font-semibold text-primary backdrop-blur-md shadow-md">
+            <ChevronsDown className="size-3 animate-bounce" />
+            Full Scroll Page
+          </div>
+        )}
+
+        {/* Hover expand overlay */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/50 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/85 px-4 py-2 text-xs font-semibold text-white shadow-xl hover:scale-105 transition-transform">
+            <Maximize2 className="size-3.5 text-primary" />
+            {isTall ? 'Full Zoom & Scroll' : 'Expand Full HD'}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-3 flex items-center justify-between px-2 text-xs text-muted">
+        <span className="font-medium text-fg/85">
+          {title} — View {index + 1} of {total}
+        </span>
+        <span className="text-primary font-mono text-[11px]">
+          {isTall ? 'Scrollable Page' : 'HD Preview'}
+        </span>
+      </div>
+    </div>
+  )
+}
 
 export default function ProjectCaseStudyPage() {
   const { slug } = useParams()
@@ -32,6 +125,20 @@ export default function ProjectCaseStudyPage() {
   const { cta } = portfolioConfig
   const [headerCompact, setHeaderCompact] = useState(false)
   const [activeModalImage, setActiveModalImage] = useState<string | null>(null)
+  const [activeModalIndex, setActiveModalIndex] = useState<number>(0)
+  const [modalZoomMode, setModalZoomMode] = useState<'scroll' | 'fit'>('scroll')
+  const [zoomScale, setZoomScale] = useState<number>(1)
+  const [isModalImageTall, setIsModalImageTall] = useState<boolean>(false)
+  const [scrolledModal, setScrolledModal] = useState<boolean>(false)
+
+  const openModal = (src: string, index: number) => {
+    setActiveModalImage(src)
+    setActiveModalIndex(index)
+    setZoomScale(1)
+    setModalZoomMode('scroll')
+    setIsModalImageTall(false)
+    setScrolledModal(false)
+  }
 
   const prev = projectIndex > 0 ? projects[projectIndex - 1] : undefined
   const next =
@@ -455,40 +562,14 @@ export default function ProjectCaseStudyPage() {
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               {study.screenshots.map((src, index) => (
-                <div
+                <ScreenshotItem
                   key={src}
-                  onClick={() => setActiveModalImage(src)}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-line/80 bg-[#000000] p-3 shadow-xl transition-all duration-300 hover:border-primary/50 hover:shadow-2xl"
-                >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#000000] flex items-center justify-center">
-                    {/* Ambient glow behind */}
-                    <img
-                      src={src}
-                      alt=""
-                      aria-hidden="true"
-                      className="absolute inset-0 w-full h-full object-cover opacity-20 blur-xl scale-110 pointer-events-none"
-                    />
-                    {/* Main image showing full height and width with black background */}
-                    <img
-                      src={src}
-                      alt={`${project.title} screenshot ${index + 1}`}
-                      loading="lazy"
-                      className="relative z-10 max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-
-                    {/* Hover expand overlay */}
-                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-[2px] transition-opacity group-hover:opacity-100">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/80 px-4 py-2 text-xs font-medium text-white shadow-lg">
-                        <Maximize2 className="size-3.5" />
-                        Expand Full HD
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between px-2 text-xs text-muted">
-                    <span className="font-medium text-fg/80">{project.title} — View {index + 1}</span>
-                    <span className="text-primary font-mono text-[11px]">HD Preview</span>
-                  </div>
-                </div>
+                  src={src}
+                  title={project.title}
+                  index={index}
+                  total={study.screenshots.length}
+                  onClick={() => openModal(src, index)}
+                />
               ))}
             </div>
           </div>
@@ -582,31 +663,158 @@ export default function ProjectCaseStudyPage() {
         </div>
       </Container>
 
-      {/* Fullscreen HD Lightbox Modal for Screenshots */}
+      {/* Fullscreen Interactive Zoom & Scroll Lightbox Modal */}
       {activeModalImage ? (
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-xl animate-fade-in"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 p-3 sm:p-6 backdrop-blur-2xl animate-fade-in select-none"
           onClick={() => setActiveModalImage(null)}
         >
-          <button
-            type="button"
-            onClick={() => setActiveModalImage(null)}
-            className="absolute top-6 right-6 z-50 rounded-full border border-white/20 bg-black/60 p-3 text-white hover:bg-white hover:text-black transition-colors"
-            aria-label="Close fullscreen preview"
-          >
-            <X className="size-6" />
-          </button>
+          {/* Top Floating Control Bar */}
           <div
-            className="relative max-h-[90vh] max-w-[90vw] overflow-y-auto rounded-2xl border border-white/10 bg-black p-2 sm:p-4 shadow-2xl"
+            className="relative z-50 flex w-full max-w-5xl items-center justify-between gap-3 rounded-2xl border border-white/10 bg-[#0B0F17]/95 px-4 py-3 backdrop-blur-xl shadow-2xl shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="text-sm font-semibold text-white">
+                {project.title} — View {activeModalIndex + 1}
+              </span>
+              {isModalImageTall && (
+                <span className="hidden sm:inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
+                  <ChevronsDown className="size-3" />
+                  Full Page Capture
+                </span>
+              )}
+            </div>
+
+            {/* View Mode & Zoom Controls */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setModalZoomMode((prev) => (prev === 'scroll' ? 'fit' : 'scroll'))
+                  setZoomScale(1)
+                }}
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors',
+                  modalZoomMode === 'scroll'
+                    ? 'border-primary/50 bg-primary/20 text-primary hover:bg-primary/30'
+                    : 'border-white/15 bg-white/5 text-white/80 hover:bg-white/10'
+                )}
+                title={modalZoomMode === 'scroll' ? 'Switch to Fit Screen view' : 'Switch to Full Zoom Scroll view'}
+              >
+                {modalZoomMode === 'scroll' ? (
+                  <>
+                    <Minimize2 className="size-3.5" />
+                    <span>Fit View</span>
+                  </>
+                ) : (
+                  <>
+                    <Maximize2 className="size-3.5" />
+                    <span>Full Zoom Scroll</span>
+                  </>
+                )}
+              </button>
+
+              <div className="hidden sm:flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 p-1">
+                <button
+                  type="button"
+                  onClick={() => setZoomScale((s) => Math.max(0.6, Math.round((s - 0.2) * 10) / 10))}
+                  className="rounded p-1 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+                  title="Zoom Out"
+                >
+                  <ZoomOut className="size-3.5" />
+                </button>
+                <span className="min-w-10 text-center font-mono text-[11px] text-white/80">
+                  {Math.round(zoomScale * 100)}%
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setZoomScale((s) => Math.min(2.5, Math.round((s + 0.2) * 10) / 10))}
+                  className="rounded p-1 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+                  title="Zoom In"
+                >
+                  <ZoomIn className="size-3.5" />
+                </button>
+                {zoomScale !== 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setZoomScale(1)}
+                    className="ml-1 rounded p-1 text-primary hover:bg-primary/10 transition-colors"
+                    title="Reset Zoom"
+                  >
+                    <RotateCcw className="size-3" />
+                  </button>
+                )}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setActiveModalImage(null)}
+                className="rounded-lg border border-white/15 bg-white/5 p-1.5 text-white/80 hover:bg-white hover:text-black transition-colors"
+                aria-label="Close fullscreen preview"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Modal Image Body with Smooth Full Page Scroll */}
+          <div
+            className={cn(
+              'relative my-auto flex w-full max-w-5xl flex-col items-center justify-start overflow-y-auto overflow-x-hidden rounded-2xl border border-white/10 bg-[#0B0F17]/95 p-3 sm:p-6 shadow-2xl transition-all',
+              modalZoomMode === 'fit' ? 'max-h-[82vh] justify-center' : 'max-h-[84vh]'
+            )}
+            onScroll={(e) => {
+              if (e.currentTarget.scrollTop > 30) {
+                setScrolledModal(true)
+              }
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={activeModalImage}
               alt="Fullscreen UI view"
-              className="max-w-full max-h-[85vh] object-contain rounded-xl mx-auto"
+              onLoad={(e) => {
+                const img = e.currentTarget
+                if (img.naturalHeight > img.naturalWidth * 1.15) {
+                  setIsModalImageTall(true)
+                }
+              }}
+              style={{
+                width:
+                  modalZoomMode === 'fit'
+                    ? 'auto'
+                    : isModalImageTall
+                    ? `${Math.round(zoomScale * 100)}%`
+                    : `${Math.round(zoomScale * 100)}%`,
+                maxWidth:
+                  modalZoomMode === 'fit'
+                    ? '100%'
+                    : isModalImageTall
+                    ? `${Math.round(zoomScale * 52)}rem`
+                    : `${Math.round(zoomScale * 64)}rem`,
+              }}
+              className={cn(
+                'rounded-xl shadow-2xl transition-all duration-200 block mx-auto',
+                modalZoomMode === 'fit'
+                  ? 'max-h-[78vh] w-auto object-contain'
+                  : 'h-auto object-contain'
+              )}
             />
+
+            {/* Scroll Indicator */}
+            {isModalImageTall && modalZoomMode === 'scroll' && !scrolledModal && (
+              <div className="sticky bottom-3 z-30 mt-4 flex items-center gap-2 rounded-full border border-primary/40 bg-black/90 px-4 py-2 text-xs font-semibold text-primary backdrop-blur-md shadow-2xl animate-bounce pointer-events-none">
+                <MoveDown className="size-3.5" />
+                Scroll to view full page content
+              </div>
+            )}
+          </div>
+
+          <div className="text-center text-[11px] text-white/50 pt-2 shrink-0">
+            Click outside or press <kbd className="rounded border border-white/20 bg-white/10 px-1.5 py-0.5 font-mono text-[10px] text-white/80">ESC</kbd> to close
           </div>
         </div>
       ) : null}
