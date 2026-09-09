@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage.tsx'
 import { NotFoundPage } from './pages/NotFoundPage.tsx'
 
 const ProjectCaseStudyPage = lazy(() => import('./pages/ProjectCaseStudyPage.tsx'))
+const CvPage = lazy(() => import('./pages/CvPage.tsx'))
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -31,6 +32,34 @@ function AppRoutes() {
     <>
       <ScrollManager />
       <Routes>
+        <Route
+          path="cv"
+          element={
+            <Suspense
+              fallback={
+                <div className="bg-[#2d3134] text-slate-400 flex min-h-screen items-center justify-center text-sm">
+                  Loading CV Studio…
+                </div>
+              }
+            >
+              <CvPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="resume"
+          element={
+            <Suspense
+              fallback={
+                <div className="bg-[#2d3134] text-slate-400 flex min-h-screen items-center justify-center text-sm">
+                  Loading CV Studio…
+                </div>
+              }
+            >
+              <CvPage />
+            </Suspense>
+          }
+        />
         <Route element={<PortfolioLayout />}>
           <Route index element={<HomePage />} />
           <Route

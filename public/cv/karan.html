@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karan Kumar - Resume</title>
+    <style>
+        /* --- Base & Reset --- */
+        :root {
+            --primary-color: #111111;
+            --accent-color: #1a5276;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --light-gray: #f4f6f7;
+            --border-color: #d5dbdb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-color);
+            background-color: #3e4245; 
+            line-height: 1.28;
+            font-size: 8.7pt; 
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        /* --- Page Container (A4 Size) --- */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: var(--bg-color);
+            padding: 7mm 9.5mm; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            position: relative;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s ease;
+        }
+
+        /* --- Two Column Layout --- */
+        .resume-wrapper {
+            display: flex;
+            gap: 13px;
+            height: 100%;
+        }
+
+        .left-column {
+            width: 31%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: baseline;
+            gap: 10px;
+            border-right: 1px solid var(--light-gray);
+            padding-right: 9px;
+        }
+
+        .right-column {
+            width: 69%; 
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* --- Typography & Headings --- */
+        h1 {
+            font-size: 18.5pt; 
+            color: var(--primary-color);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 7.6pt; 
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 4px;
+            word-spacing: 1.2px;
+        }
+        
+        .subtitle span {
+            color: #888;
+            margin: 0 3px;
+        }
+
+        .summary {
+            text-align: justify;
+            margin-bottom: 4px;
+            color: #444;
+            font-size: 7.1pt;
+            line-height: 1.26;
+        }
+
+        h2 {
+            font-size: 8.6pt; 
+            color: var(--primary-color);
+            border-bottom: 1.5px solid var(--accent-color);
+            padding-bottom: 2px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        h2 svg {
+            color: var(--accent-color);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Left Column Elements --- */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            margin-bottom: 2.5px;
+        }
+        
+        .contact-icon {
+            color: var(--accent-color);
+            margin-top: 1px;
+        }
+
+        .contact-text .label {
+            font-size: 5.8pt;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 700;
+            display: block;
+            line-height: 1.1;
+        }
+        
+        .contact-text .value {
+            font-size: 7.1pt;
+            font-weight: 500;
+        }
+
+        .skill-category {
+            margin-bottom: 3.5px;
+        }
+
+        .skill-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 1.5px;
+            font-size: 7.1pt;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .skill-title::before {
+            content: "•";
+            color: var(--accent-color);
+            font-size: 11pt;
+            line-height: 0;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5px;
+        }
+
+        .pill {
+            background-color: var(--light-gray);
+            border: 1px solid var(--border-color);
+            padding: 1.2px 3.2px;
+            border-radius: 3px;
+            font-size: 6.2pt;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .bullet-list {
+            padding-left: 12px;
+            margin-bottom: 2px;
+        }
+
+        .bullet-list li {
+            margin-bottom: 1.8px;
+            color: #444;
+            padding-left: 1px;
+            font-size: 6.9pt;
+            line-height: 1.26;
+        }
+
+        .bullet-list li::marker {
+            color: var(--accent-color);
+        }
+        
+        .edu-item {
+            margin-bottom: 3.5px;
+        }
+        
+        .edu-degree {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 7.1pt;
+        }
+        
+        .edu-school {
+            color: #555;
+            font-size: 6.6pt;
+        }
+
+        /* --- Right Column Elements --- */
+        .exp-item {
+            margin-bottom: 4px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1px;
+            width: 100%;
+        }
+
+        .exp-title-block {
+            font-weight: 700;
+            font-size: 8.1pt; 
+            color: var(--primary-color);
+            flex: 1; 
+        }
+        
+        .exp-role {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .exp-meta {
+            font-size: 6.6pt;
+            color: #666;
+            white-space: nowrap;
+            flex-shrink: 0; 
+            margin-left: 8px;
+            text-align: right;
+        }
+
+        .proj-item {
+            margin-bottom: 3.8px;
+        }
+
+        .proj-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1px;
+            width: 100%;
+        }
+
+        .proj-title-block {
+            font-weight: 700;
+            font-size: 8pt; 
+            color: var(--primary-color);
+            flex: 1; 
+        }
+
+        .proj-tag {
+            display: inline-block;
+            font-size: 5.6pt;
+            font-weight: 600;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0.5px 3px;
+            border-radius: 8px;
+            background: #f0f8ff;
+            vertical-align: middle;
+            margin-left: 3px;
+            position: relative;
+            top: -1px;
+        }
+
+        .proj-link {
+            font-size: 6.6pt;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0; 
+            margin-left: 8px;
+        }
+
+        .proj-stack {
+            font-size: 6.2pt;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 1.5px;
+        }
+
+        /* --- Floating Actions Bar --- */
+        .cv-floating-dock {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .dock-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(18, 22, 28, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 7px 12px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(12px);
+        }
+
+        .dock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            border-radius: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .primary-btn {
+            background-color: #0284c7;
+            color: #ffffff;
+        }
+        .primary-btn:hover {
+            background-color: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        .secondary-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        .secondary-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .edit-btn {
+            background-color: #0d9488;
+            color: #ffffff;
+        }
+        .edit-btn:hover {
+            background-color: #0f766e;
+            transform: translateY(-1px);
+        }
+
+        /* --- Owner Edit Mode Top Banner --- */
+        .edit-mode-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #042f2e, #064e3b);
+            border-bottom: 1px solid #14b8a6;
+            color: #ffffff;
+            padding: 10px 20px;
+            z-index: 2000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .edit-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .edit-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 700;
+            font-size: 9pt;
+            background: rgba(20, 184, 166, 0.25);
+            border: 1px solid #14b8a6;
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: #5eead4;
+        }
+
+        .edit-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2dd4bf;
+            box-shadow: 0 0 8px #2dd4bf;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .edit-hint {
+            font-size: 8.5pt;
+            color: #ccfbf1;
+            flex: 1;
+        }
+
+        .edit-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bar-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .save-btn {
+            background: #10b981;
+            color: #022c22;
+        }
+        .save-btn:hover { background: #34d399; }
+
+        .download-btn {
+            background: #38bdf8;
+            color: #082f49;
+        }
+        .download-btn:hover { background: #7dd3fc; }
+
+        .reset-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+        .reset-btn:hover { background: rgba(255, 255, 255, 0.25); }
+
+        .lock-btn {
+            background: #f43f5e;
+            color: #ffffff;
+        }
+        .lock-btn:hover { background: #e11d48; }
+
+        /* --- In-Editing State Highlights --- */
+        body.is-editing .page {
+            outline: 2px dashed #0d9488;
+            outline-offset: 4px;
+        }
+
+        body.is-editing [contenteditable="true"]:hover {
+            outline: 1px dashed #0284c7;
+            background-color: rgba(2, 132, 199, 0.04);
+            cursor: text;
+        }
+
+        body.is-editing [contenteditable="true"]:focus {
+            outline: 1.5px solid #0284c7;
+            background-color: rgba(2, 132, 199, 0.07);
+        }
+
+        /* --- Print Styles --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background-color: var(--bg-color);
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding-bottom: 0;
+            }
+            .page {
+                margin: 0;
+                padding: 7mm 9.5mm;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                border: none;
+                outline: none !important;
+            }
+            .cv-floating-dock,
+            .edit-mode-bar {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FLOATING ACTION DOCK -->
+    <aside class="cv-floating-dock" aria-label="Resume Actions">
+        <div class="dock-pill">
+            <a href="/" class="dock-btn secondary-btn" title="Back to Portfolio">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Portfolio</span>
+            </a>
+            <button type="button" class="dock-btn primary-btn" onclick="printCV()" title="Print or Save as PDF">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                <span>Print PDF</span>
+            </button>
+            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download original or edited HTML">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download HTML</span>
+            </button>
+            <button type="button" id="edit-toggle-btn" class="dock-btn edit-btn" onclick="toggleEditMode()" title="Only Karan's Access (PIN protected)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span id="edit-btn-text">Edit CV</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- OWNER EDIT MODE TOP BAR (PIN PROTECTED) -->
+    <header id="edit-mode-bar" class="edit-mode-bar" style="display: none;">
+        <div class="edit-bar-content">
+            <span class="edit-badge">
+                <span class="edit-pulse"></span>
+                Owner Edit Mode Active
+            </span>
+            <span class="edit-hint">Click anywhere on the resume to edit text directly.</span>
+            <div class="edit-actions">
+                <button type="button" class="bar-btn save-btn" onclick="saveEdits()">💾 Save to Browser</button>
+                <button type="button" class="bar-btn download-btn" onclick="downloadUpdatedHTML()">📥 Download Updated HTML</button>
+                <button type="button" class="bar-btn reset-btn" onclick="resetToDefault()">↺ Reset Original</button>
+                <button type="button" class="bar-btn lock-btn" onclick="lockEditMode()">🔒 Lock & Done</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- RESUME PAGE CONTAINER -->
+    <div class="page" id="resume-page">
+        <div class="resume-wrapper" id="resume-wrapper">
+            
+            <!-- LEFT COLUMN -->
+            <aside class="left-column">
+                
+                <!-- CONTACT & PROFILES -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        Contact & Profiles
+                    </h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="label">Location</span>
+                            <span class="value">Punjab, India</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="label">Phone</span>
+                            <span class="value">+91-7340795241</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="label">Email</span>
+                            <span class="value"><a href="mailto:karanjangral60@gmail.com">karanjangral60@gmail.com</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="label">LinkedIn</span>
+                            <span class="value"><a href="https://linkedin.com/in/karan2001" target="_blank">linkedin.com/in/karan2001</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </div>
+                        <div class="contact-text">
+                            <span class="label">GitHub</span>
+                            <span class="value"><a href="https://github.com/karanSFS" target="_blank">github.com/karanSFS</a></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TECHNICAL SKILLS -->
+                <section>
+                    <h2>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        Technical Skills
+                    </h2>
+                    
+                    <div class="skill-category">
+                        <div class="skill-title">Core Languages</div>
+                        <div class="pills">
+                            <span class="pill">TypeScript</span> <span class="pill">JavaScript (ES6+)</span> <span class="pill">SQL</span> <span class="pill">HTML5/CSS3</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-title">Frontend</div>
+                        <div class="pills">
+                            <span class="pill">Next.js (App Router)</span> <span class="pill">React.js</span> <span class="pill">Redux Toolkit</span> <span class="pill">RTK Query</span> <span class="pill">Redux Persist</span> <span class="pill">Tailwind CSS</span> <span class="pill">Ant Design</span> <span class="pill">Styled Components</span> <span class="pill">Framer Motion</span> <span class="pill">Recharts</span> <span class="pill">Vite</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-title">Backend & Server-Side</div>
+                        <div class="pills">
+                            <span class="pill">Next.js Server APIs</span> <span class="pill">Server Actions</span> <span class="pill">Route Handlers</span> <span class="pill">RESTful APIs</span> <span class="pill">Crawlee</span> <span class="pill">Cheerio</span> <span class="pill">Firecrawl</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-title">Databases & Auth</div>
+                        <div class="pills">
+                            <span class="pill">PostgreSQL</span> <span class="pill">Supabase (Auth / RLS)</span> <span class="pill">Neon DB</span> <span class="pill">MongoDB</span> <span class="pill">OAuth 2.0</span> <span class="pill">2FA/JWT</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-title">Cloud & Integrations</div>
+                        <div class="pills">
+                            <span class="pill">Stripe Billing</span> <span class="pill">OpenRouter AI</span> <span class="pill">OpenAI</span> <span class="pill">Google Gemini AI</span> <span class="pill">Firebase (FCM)</span> <span class="pill">DataForSEO</span> <span class="pill">Git/GitHub</span> <span class="pill">Brevo</span> <span class="pill">Vercel</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-title">Tools & AI Assistants</div>
+                        <div class="pills">
+                            <span class="pill">Claude Code</span> <span class="pill">Cursor</span> <span class="pill">Antigravity</span> <span class="pill">Replit</span> <span class="pill">Lovable</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CORE COMPETENCIES -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Core Competencies
+                    </h2>
+                    <ul class="bullet-list">
+                        <li>Full-Stack SaaS Product Architecture</li>
+                        <li>Multi-Tenant System Design</li>
+                        <li>PostgreSQL Row Level Security (RLS)</li>
+                        <li>Stripe Subscription & Billing Flows</li>
+                        <li>AI Model Integration & Pipelines</li>
+                        <li>Automated Web Crawling Engines</li>
+                        <li>State Management & Performance Tuning</li>
+                        <li>Role-Based Access Control (RBAC)</li>
+                    </ul>
+                </section>
+
+                <!-- EDUCATION -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        Education
+                    </h2>
+                    <div class="edu-item">
+                        <div class="edu-degree">Master of Computer Applications (MCA)</div>
+                        <div class="edu-school">Guru Nanak Dev University, Amritsar<br>CGPA: 8.09/10.0 | 2021-2024</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">BSc Computer Science</div>
+                        <div class="edu-school">Baring Union Christian College, Batala<br>Score: 67% | 2018-2021</div>
+                    </div>
+                </section>
+                
+                <!-- LANGUAGES -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        Languages
+                    </h2>
+                    <ul class="bullet-list" style="margin-bottom: 0;">
+                        <li>English (Professional Working)</li>
+                        <li>Hindi (Native / Bilingual)</li>
+                        <li>Punjabi (Native / Bilingual)</li>
+                    </ul>
+                </section>
+
+            </aside>
+
+            <!-- RIGHT COLUMN -->
+            <main class="right-column">
+                
+                <!-- HEADER -->
+                <header>
+                    <h1>Karan Kumar</h1>
+                    <div class="subtitle">
+                        Full-Stack Developer <span>•</span> Next.js <span>•</span> React <span>•</span> TypeScript <span>•</span> PostgreSQL <span>•</span> Supabase <span>•</span> AI Integration
+                    </div>
+                    <p class="summary">
+                        Full-Stack Developer with a proven record of architecting and shipping production-grade SaaS platforms and AI-powered web applications. Expert in end-to-end Next.js development server-side APIs, Server Actions, and Route Handlers combined with reactive React/TypeScript frontends. Specialized in multi-tenant database architecture, PostgreSQL/Supabase Row Level Security, Stripe billing integration, automated web crawling pipelines, and delivering scalable products in fast-paced startup environments.
+                    </p>
+                </header>
+
+                <!-- PROFESSIONAL EXPERIENCE -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        Professional Experience
+                    </h2>
+                    
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-title-block">Sunfocus Solutions Pvt. Ltd. <span style="color:#aaa; font-weight:normal;">—</span> <span class="exp-role">Full-Stack Developer</span></div>
+                            <div class="exp-meta">Jan 2025 – Present · Punjab, India</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Architect and build production-grade SaaS platforms and admin portals using Next.js, React, TypeScript, PostgreSQL, and Supabase end-to-end from design to deployment.</li>
+                            <li>Design secure Server Actions, Route Handlers, database schemas, and Row Level Security (RLS) policies; integrate Stripe billing, AI pipelines, and Firebase Cloud Messaging.</li>
+                            <li>Own full deployment pipelines on Vercel and Supabase optimizing data fetching, caching strategies, and resolving critical production issues under tight deadlines.</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-title-block">Sunfocus Solutions Pvt. Ltd. <span style="color:#aaa; font-weight:normal;">—</span> <span class="exp-role">Full-Stack Developer Intern</span></div>
+                            <div class="exp-meta">Jul 2024 – Dec 2024 · Punjab, India</div>
+                        </div>
+                        <ul class="bullet-list">
+                            <li>Built full-stack features using Next.js, React, TypeScript, and MongoDB; developed server-side API routes for authentication, session management, and data persistence.</li>
+                            <li>Engineered reusable component libraries and implemented responsive UI layouts adhering to design system standards and performance best practices.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- KEY PROJECTS -->
+                <section>
+                    <h2>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>
+                        Key Projects & Production Platforms
+                    </h2>
+
+                    <!-- 1. SYNCRO -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">SYNCRO <span style="color:#aaa; font-weight:normal;">—</span> Creator Monetization & Growth Platform <span class="proj-tag">Independent Project</span></div>
+                            <a href="https://syncro.net.in" class="proj-link" target="_blank">syncro.net.in ↗</a>
+                        </div>
+                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Tailwind CSS, Ant Design, Redux Toolkit, Stripe, AI Integrations, REST APIs</div>
+                        <ul class="bullet-list">
+                            <li>Built responsive creator dashboards and workflows spanning storefronts, digital products, courses, bookings, lead capture, and subscription monetization with Stripe checkout flows.</li>
+                            <li>Developed social media automation interfaces, cross-platform content publishing workflows, and AI-powered creator insights, growth analytics, and content recommendation tools.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. BirthFlow (Directly below SYNCRO) -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">BirthFlow <span style="color:#aaa; font-weight:normal;">—</span> Full-Stack Doula Care & Agency Platform <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
+                            <a href="https://staging-duola-seven.vercel.app" class="proj-link" target="_blank">staging-duola-seven.vercel.app ↗</a>
+                        </div>
+                        <div class="proj-stack">Stack: Next.js, React, TypeScript, PostgreSQL, Neon, Supabase, Vercel, OpenAI, Google Calendar API, Tailwind CSS</div>
+                        <ul class="bullet-list">
+                            <li>Built full-stack Next.js SaaS managing doula client journeys from intake through pregnancy timelines, dynamic forms, cervical vitals labor tracking, and postpartum workflows.</li>
+                            <li>Engineered Neon PostgreSQL schemas, Supabase real-time sync, backup doula coordination with Google Calendar sync, and OpenAI communication assistants.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. SossRank -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">SossRank <span style="color:#aaa; font-weight:normal;">—</span> AI SEO & Local Business Optimization <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
+                            <a href="https://app.sossrank.com" class="proj-link" target="_blank">app.sossrank.com ↗</a>
+                        </div>
+                        <div class="proj-stack">Stack: Next.js, React, TypeScript, PostgreSQL, Supabase, Stripe, OpenRouter AI, Crawlee, Cheerio, Firecrawl, DataForSEO, Brevo, Tailwind CSS</div>
+                        <ul class="bullet-list">
+                            <li>Independently architected the full-stack SaaS platform database schema, Next.js server-side APIs, automated crawling pipelines (Crawlee, Cheerio, Firecrawl), and production deployment.</li>
+                            <li>Implemented multi-model AI workflows via OpenRouter for audit generation, automated Brevo email alerts, and recurring Stripe billing for tiered SEO reporting plans.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. Market Ember -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">Market Ember <span style="color:#aaa; font-weight:normal;">—</span> Multi-Tenant Business Administration <span class="proj-tag">Sunfocus Solutions Production Platform</span></div>
+                            <span class="proj-link">Live Mobile App Admin Ecosystem</span>
+                        </div>
+                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Supabase, PostgreSQL, Redux Toolkit, Redux Persist, Firebase Cloud Messaging, Recharts, Ant Design, Tailwind CSS</div>
+                        <ul class="bullet-list">
+                            <li>Built a multi-tenant admin portal with Next.js Middleware RBAC, Supabase Auth, territory management workflows, Recharts analytics dashboards, and Firebase Cloud Messaging notifications.</li>
+                            <li>Engineered real-time data sync across mobile operations, role-based resource permissions, and optimized persistent state handling with Redux Toolkit and Persist.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 5. DocBot.One -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">DocBot.One <span style="color:#aaa; font-weight:normal;">—</span> AI Conversational SaaS Platform <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
+                            <a href="https://docbot.one" class="proj-link" target="_blank">docbot.one ↗</a>
+                        </div>
+                        <div class="proj-stack">Stack: React, TypeScript, Vite, Redux Toolkit, Redux Persist, Styled Components, Ant Design, Framer Motion, Stripe</div>
+                        <ul class="bullet-list">
+                            <li>Built AI chat interface with prompt editing, response regeneration, multi-tenant team management, token tracking dashboards, 2FA auth flows, and Stripe subscription billing integration.</li>
+                            <li>Designed smooth Framer Motion micro-interactions, responsive sidebars, and client-side token consumption tracking for high-volume enterprise document querying.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 6. Vora -->
+                    <div class="proj-item">
+                        <div class="proj-header">
+                            <div class="proj-title-block">Vora <span style="color:#aaa; font-weight:normal;">—</span> AI Fashion & Style Analysis Platform <span class="proj-tag">Personal Project</span></div>
+                        </div>
+                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Google Gemini AI, Redux Toolkit, RTK Query, Tailwind CSS, Framer Motion</div>
+                        <ul class="bullet-list">
+                            <li>Built an AI fashion app using Gemini vision models for image-based outfit analysis and personalized styling recommendations; implemented OAuth authentication and RTK Query state caching.</li>
+                            <li>Engineered automated wardrobe breakdown tagging, outfit match scoring algorithms, and seamless media uploads optimized for fast mobile rendering.</li>
+                        </ul>
+                    </div>
+
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- CLIENT LOGIC FOR PRINT, EDIT, PERSISTENCE & DOWNLOAD -->
+    <script>
+        const STORAGE_KEY = 'karan_cv_custom_content_v1';
+        const AUTH_KEY = 'karan_cv_authenticated';
+        const CORRECT_PIN = 'karan'; // Passcode for Karan's direct access (can also use 'karan2025')
+        const ALT_PIN = 'karan2025';
+
+        // Hydrate saved custom edits if present
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedHtml = localStorage.getItem(STORAGE_KEY);
+            if (savedHtml) {
+                const wrapper = document.getElementById('resume-wrapper');
+                if (wrapper) {
+                    wrapper.innerHTML = savedHtml;
+                }
+            }
+            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+                enableEditMode();
+            }
+        });
+
+        function printCV() {
+            window.print();
+        }
+
+        function toggleEditMode() {
+            if (document.body.classList.contains('is-editing')) {
+                lockEditMode();
+                return;
+            }
+            if (sessionStorage.getItem(AUTH_KEY) === 'true') {
+                enableEditMode();
+                return;
+            }
+            const pin = prompt('Enter Owner Passcode to edit CV (Access restricted to Karan):');
+            if (!pin) return;
+            if (pin.trim().toLowerCase() === CORRECT_PIN || pin.trim() === ALT_PIN) {
+                sessionStorage.setItem(AUTH_KEY, 'true');
+                enableEditMode();
+            } else {
+                alert('Incorrect Passcode. Access is restricted to Karan.');
+            }
+        }
+
+        function enableEditMode() {
+            document.body.classList.add('is-editing');
+            const wrapper = document.getElementById('resume-wrapper');
+            if (wrapper) {
+                wrapper.setAttribute('contenteditable', 'true');
+            }
+            const editBar = document.getElementById('edit-mode-bar');
+            if (editBar) editBar.style.display = 'block';
+            
+            const btnText = document.getElementById('edit-btn-text');
+            if (btnText) btnText.textContent = 'Lock CV';
+        }
+
+        function lockEditMode() {
+            document.body.classList.remove('is-editing');
+            const wrapper = document.getElementById('resume-wrapper');
+            if (wrapper) {
+                wrapper.removeAttribute('contenteditable');
+            }
+            const editBar = document.getElementById('edit-mode-bar');
+            if (editBar) editBar.style.display = 'none';
+
+            const btnText = document.getElementById('edit-btn-text');
+            if (btnText) btnText.textContent = 'Edit CV';
+        }
+
+        function saveEdits() {
+            const wrapper = document.getElementById('resume-wrapper');
+            if (wrapper) {
+                localStorage.setItem(STORAGE_KEY, wrapper.innerHTML);
+                alert('✓ Changes saved to your browser! Your edits will be remembered.');
+            }
+        }
+
+        function resetToDefault() {
+            if (confirm('Are you sure you want to reset all edits back to the default CV content?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        function downloadHTML() {
+            downloadUpdatedHTML();
+        }
+
+        function downloadUpdatedHTML() {
+            // Save state first
+            const wrapper = document.getElementById('resume-wrapper');
+            if (wrapper) {
+                localStorage.setItem(STORAGE_KEY, wrapper.innerHTML);
+            }
+
+            // Clone document to produce a clean standalone HTML download
+            const docClone = document.documentElement.cloneNode(true);
+
+            // Clean up temporary edit attributes from clone
+            docClone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+            const editBarClone = docClone.querySelector('#edit-mode-bar');
+            if (editBarClone) editBarClone.style.display = 'none';
+            const bodyClone = docClone.querySelector('body');
+            if (bodyClone) bodyClone.classList.remove('is-editing');
+
+            const fullHtml = '<!DOCTYPE html>\n' + docClone.outerHTML;
+            const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'karan.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
