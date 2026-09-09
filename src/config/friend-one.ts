@@ -140,7 +140,10 @@ export const friendOneConfig: PortfolioConfig = {
         ],
         screenshots: [
           '/images/projects/syncro/cover.png',
-          '/images/projects/syncro/screenshot-2.png',
+          '/images/projects/syncro/dashboard.png',
+          '/images/projects/syncro/courses.png',
+          '/images/projects/syncro/pricing.png',
+          '/images/projects/syncro/automation-flow.png',
         ],
         metrics: [
           { label: 'Architecture', value: 'Full-Stack Next.js' },
