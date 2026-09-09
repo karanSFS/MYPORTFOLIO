@@ -1,748 +1,1216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Karan Kumar - Resume</title>
     <style>
-        /* --- Base & Reset --- */
-        :root {
-            --primary-color: #111111;
-            --accent-color: #1a5276;
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --light-gray: #f4f6f7;
-            --border-color: #d5dbdb;
-        }
+      /* --- Base & Reset --- */
+      :root {
+        --primary-color: #111111;
+        --accent-color: #1a5276;
+        --bg-color: #ffffff;
+        --text-color: #333333;
+        --light-gray: #f4f6f7;
+        --border-color: #d5dbdb;
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
+      body {
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-color);
+        background-color: #383c3f;
+        line-height: 1.33;
+        font-size: 11px;
+        min-height: 100vh;
+        padding-bottom: 75px;
+      }
+
+      /* Auto-hide internal docks when embedded in an iframe */
+      body.is-embedded {
+        padding-bottom: 0 !important;
+        background-color: transparent !important;
+        min-height: auto !important;
+      }
+      body.is-embedded .page {
+        margin: 0 auto !important;
+        box-shadow: none !important;
+      }
+      body.is-embedded .cv-floating-dock {
+        display: none !important;
+      }
+
+      /* --- Page Container (A4 Proportions) --- */
+      .page {
+        width: 210mm;
+        margin: 24px auto;
+        background: var(--bg-color);
+        padding: 9mm 10mm;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        position: relative;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* --- Two Column Layout --- */
+      .resume-wrapper {
+        display: flex;
+        gap: 14px;
+        height: 100%;
+        flex: 1;
+      }
+
+      .left-column {
+        width: 30.5%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-right: 1px solid var(--light-gray);
+        padding-right: 11px;
+      }
+
+      .right-column {
+        width: 69.5%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-left: 2px;
+      }
+
+      /* --- Typography & Headings --- */
+      h1 {
+        font-size: 20pt;
+        color: var(--primary-color);
+        text-transform: uppercase;
+        line-height: 1.05;
+        margin-bottom: 3px;
+        letter-spacing: 0.6px;
+      }
+
+      .subtitle {
+        font-size: 7.9pt;
+        color: var(--accent-color);
+        font-weight: 600;
+        margin-bottom: 6px;
+        word-spacing: 1.2px;
+      }
+
+      .subtitle span {
+        color: #888;
+        margin: 0 3px;
+      }
+
+      .summary {
+        text-align: justify;
+        margin-bottom: 8px;
+        color: #444;
+        font-size: 7.3pt;
+        line-height: 1.34;
+      }
+
+      h2 {
+        font-size: 8.9pt;
+        color: var(--primary-color);
+        border-bottom: 1.5px solid var(--accent-color);
+        padding-bottom: 2px;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      h2 svg {
+        color: var(--accent-color);
+      }
+
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Left Column Elements --- */
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 4.5px;
+      }
+
+      .contact-icon {
+        color: var(--accent-color);
+        margin-top: 1px;
+      }
+
+      .contact-text .label {
+        font-size: 6pt;
+        text-transform: uppercase;
+        color: #666;
+        font-weight: 700;
+        display: block;
+        line-height: 1.1;
+      }
+
+      .contact-text .value {
+        font-size: 7.3pt;
+        font-weight: 500;
+      }
+
+      .skill-category {
+        margin-bottom: 5.5px;
+      }
+
+      .skill-title {
+        font-weight: 600;
+        color: var(--accent-color);
+        margin-bottom: 2px;
+        font-size: 7.3pt;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .skill-title::before {
+        content: "•";
+        color: var(--accent-color);
+        font-size: 11pt;
+        line-height: 0;
+      }
+
+      .pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+      }
+
+      .pill {
+        background-color: var(--light-gray);
+        border: 1px solid var(--border-color);
+        padding: 1.5px 3.8px;
+        border-radius: 3px;
+        font-size: 6.4pt;
+        color: #333;
+        white-space: nowrap;
+      }
+
+      .bullet-list {
+        padding-left: 12px;
+        margin-bottom: 3px;
+      }
+
+      .bullet-list li {
+        margin-bottom: 2.6px;
+        color: #444;
+        padding-left: 1px;
+        font-size: 7.1pt;
+        line-height: 1.32;
+      }
+
+      .bullet-list li::marker {
+        color: var(--accent-color);
+      }
+
+      .edu-item {
+        margin-bottom: 5px;
+      }
+
+      .edu-degree {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: 7.3pt;
+      }
+
+      .edu-school {
+        color: #555;
+        font-size: 6.8pt;
+        line-height: 1.25;
+        margin-top: 1px;
+      }
+
+      /* --- Right Column Elements --- */
+      .exp-item {
+        margin-bottom: 7px;
+      }
+
+      .exp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 2px;
+        width: 100%;
+      }
+
+      .exp-title-block {
+        font-weight: 700;
+        font-size: 8.4pt;
+        color: var(--primary-color);
+        flex: 1;
+      }
+
+      .exp-role {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+
+      .exp-meta {
+        font-size: 6.8pt;
+        color: #666;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-left: 8px;
+        text-align: right;
+      }
+
+      .proj-item {
+        margin-bottom: 10px;
+      }
+
+      .proj-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5px;
+        width: 100%;
+      }
+
+      .proj-title-block {
+        font-weight: 700;
+        font-size: 8.3pt;
+        color: var(--primary-color);
+        flex: 1;
+      }
+
+      .proj-tag {
+        display: inline-block;
+        font-size: 5.8pt;
+        font-weight: 600;
+        color: var(--accent-color);
+        border: 1px solid var(--accent-color);
+        padding: 0.5px 3.5px;
+        border-radius: 8px;
+        background: #f0f8ff;
+        vertical-align: middle;
+        margin-left: 4px;
+        position: relative;
+        top: -1px;
+      }
+
+      .proj-link {
+        font-size: 6.8pt;
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-left: 8px;
+      }
+
+      .proj-stack {
+        font-size: 6.4pt;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+
+      /* --- Floating Actions Bar (Bottom Dock) --- */
+      .cv-floating-dock {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
+
+      .dock-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(18, 22, 28, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 7px 12px;
+        border-radius: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(12px);
+      }
+
+      .dock-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        font-size: 8.5pt;
+        font-weight: 600;
+        border-radius: 24px;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        font-family: inherit;
+      }
+
+      .primary-btn {
+        background-color: #0284c7;
+        color: #ffffff;
+      }
+      .primary-btn:hover {
+        background-color: #0369a1;
+        transform: translateY(-1px);
+      }
+
+      .secondary-btn {
+        background-color: rgba(255, 255, 255, 0.12);
+        color: #e2e8f0;
+      }
+      .secondary-btn:hover {
+        background-color: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+      }
+
+      /* --- Print Styles --- */
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-color);
-            background-color: #383c3f; 
-            line-height: 1.33;
-            font-size: 11px; 
-            min-height: 100vh;
-            padding-bottom: 75px;
+          background-color: var(--bg-color);
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          padding-bottom: 0;
         }
-
-        /* Auto-hide internal docks when embedded in an iframe */
-        body.is-embedded {
-            padding-bottom: 0 !important;
-            background-color: transparent !important;
-            min-height: auto !important;
-        }
-        body.is-embedded .page {
-            margin: 0 auto !important;
-            box-shadow: none !important;
-        }
-        body.is-embedded .cv-floating-dock {
-            display: none !important;
-        }
-
-        /* --- Page Container (A4 Proportions) --- */
         .page {
-            width: 210mm;
-            margin: 24px auto;
-            background: var(--bg-color);
-            padding: 9mm 10mm; 
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-            position: relative;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+          margin: 0;
+          padding: 9.5mm 12mm;
+          box-shadow: none;
+          width: 210mm;
+          min-height: 297mm;
+          border: none;
+          outline: none !important;
         }
-
-        /* --- Two Column Layout --- */
-        .resume-wrapper {
-            display: flex;
-            gap: 14px;
-            height: 100%;
-            flex: 1;
-        }
-
-        .left-column {
-            width: 30.5%; 
-            display: flex;
-            flex-direction: column;
-            gap:10px;
-            border-right: 1px solid var(--light-gray);
-            padding-right: 11px;
-        }
-
-        .right-column {
-            width: 69.5%; 
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-left: 2px;
-        }
-
-        /* --- Typography & Headings --- */
-        h1 {
-            font-size: 20pt; 
-            color: var(--primary-color);
-            text-transform: uppercase;
-            line-height: 1.05;
-            margin-bottom: 3px;
-            letter-spacing: 0.6px;
-        }
-
-        .subtitle {
-            font-size: 7.9pt; 
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 6px;
-            word-spacing: 1.2px;
-        }
-        
-        .subtitle span {
-            color: #888;
-            margin: 0 3px;
-        }
-
-        .summary {
-            text-align: justify;
-            margin-bottom: 8px;
-            color: #444;
-            font-size: 7.3pt;
-            line-height: 1.34;
-        }
-
-        h2 {
-            font-size: 8.9pt; 
-            color: var(--primary-color);
-            border-bottom: 1.5px solid var(--accent-color);
-            padding-bottom: 2px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        h2 svg {
-            color: var(--accent-color);
-        }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- Left Column Elements --- */
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-            margin-bottom: 4.5px;
-        }
-        
-        .contact-icon {
-            color: var(--accent-color);
-            margin-top: 1px;
-        }
-
-        .contact-text .label {
-            font-size: 6pt;
-            text-transform: uppercase;
-            color: #666;
-            font-weight: 700;
-            display: block;
-            line-height: 1.1;
-        }
-        
-        .contact-text .value {
-            font-size: 7.3pt;
-            font-weight: 500;
-        }
-
-        .skill-category {
-            margin-bottom: 5.5px;
-        }
-
-        .skill-title {
-            font-weight: 600;
-            color: var(--accent-color);
-            margin-bottom: 2px;
-            font-size: 7.3pt;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .skill-title::before {
-            content: "•";
-            color: var(--accent-color);
-            font-size: 11pt;
-            line-height: 0;
-        }
-
-        .pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3px;
-        }
-
-        .pill {
-            background-color: var(--light-gray);
-            border: 1px solid var(--border-color);
-            padding: 1.5px 3.8px;
-            border-radius: 3px;
-            font-size: 6.4pt;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .bullet-list {
-            padding-left: 12px;
-            margin-bottom: 3px;
-        }
-
-        .bullet-list li {
-            margin-bottom: 2.6px;
-            color: #444;
-            padding-left: 1px;
-            font-size: 7.1pt;
-            line-height: 1.32;
-        }
-
-        .bullet-list li::marker {
-            color: var(--accent-color);
-        }
-        
-        .edu-item {
-            margin-bottom: 5px;
-        }
-        
-        .edu-degree {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 7.3pt;
-        }
-        
-        .edu-school {
-            color: #555;
-            font-size: 6.8pt;
-            line-height: 1.25;
-            margin-top: 1px;
-        }
-
-        /* --- Right Column Elements --- */
-        .exp-item {
-            margin-bottom: 7px;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2px;
-            width: 100%;
-        }
-
-        .exp-title-block {
-            font-weight: 700;
-            font-size: 8.4pt; 
-            color: var(--primary-color);
-            flex: 1; 
-        }
-        
-        .exp-role {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        .exp-meta {
-            font-size: 6.8pt;
-            color: #666;
-            white-space: nowrap;
-            flex-shrink: 0; 
-            margin-left: 8px;
-            text-align: right;
-        }
-
-        .proj-item {
-            margin-bottom: 10px;
-        }
-
-        .proj-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5px;
-            width: 100%;
-        }
-
-        .proj-title-block {
-            font-weight: 700;
-            font-size: 8.3pt; 
-            color: var(--primary-color);
-            flex: 1; 
-        }
-
-        .proj-tag {
-            display: inline-block;
-            font-size: 5.8pt;
-            font-weight: 600;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 0.5px 3.5px;
-            border-radius: 8px;
-            background: #f0f8ff;
-            vertical-align: middle;
-            margin-left: 4px;
-            position: relative;
-            top: -1px;
-        }
-
-        .proj-link {
-            font-size: 6.8pt;
-            font-weight: 500;
-            white-space: nowrap;
-            flex-shrink: 0; 
-            margin-left: 8px;
-        }
-
-        .proj-stack {
-            font-size: 6.4pt;
-            color: #555;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        /* --- Floating Actions Bar (Bottom Dock) --- */
         .cv-floating-dock {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
+          display: none !important;
         }
-
-        .dock-pill {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(18, 22, 28, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            padding: 7px 12px;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-        }
-
-        .dock-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            font-size: 8.5pt;
-            font-weight: 600;
-            border-radius: 24px;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-            font-family: inherit;
-        }
-
-        .primary-btn {
-            background-color: #0284c7;
-            color: #ffffff;
-        }
-        .primary-btn:hover {
-            background-color: #0369a1;
-            transform: translateY(-1px);
-        }
-
-        .secondary-btn {
-            background-color: rgba(255, 255, 255, 0.12);
-            color: #e2e8f0;
-        }
-        .secondary-btn:hover {
-            background-color: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-        }
-
-        /* --- Print Styles --- */
-        @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-            body {
-                background-color: var(--bg-color);
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                padding-bottom: 0;
-            }
-            .page {
-                margin: 0;
-                padding: 9.5mm 12mm;
-                box-shadow: none;
-                width: 210mm;
-                min-height: 297mm;
-                border: none;
-                outline: none !important;
-            }
-            .cv-floating-dock {
-                display: none !important;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- RESUME PAGE CONTAINER -->
     <div class="page" id="resume-page">
-        <div class="resume-wrapper" id="resume-wrapper">
-            
-            <!-- LEFT COLUMN -->
-            <aside class="left-column">
-                
-                <!-- CONTACT & PROFILES -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                        Contact & Profiles
-                    </h2>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                        </div>
-                        <div class="contact-text">
-                            <span class="label">Location</span>
-                            <span class="value">Punjab, India</span>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </div>
-                        <div class="contact-text">
-                            <span class="label">Phone</span>
-                            <span class="value">+91-7340795241</span>
-                        </div>
-                    </div>
+      <div class="resume-wrapper" id="resume-wrapper">
+        <!-- LEFT COLUMN -->
+        <aside class="left-column">
+          <!-- CONTACT & PROFILES -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Contact & Profiles
+            </h2>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                        </div>
-                        <div class="contact-text">
-                            <span class="label">Email</span>
-                            <span class="value"><a href="mailto:karanjangral60@gmail.com">karanjangral60@gmail.com</a></span>
-                        </div>
-                    </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">Location</span>
+                <span class="value">Punjab, India</span>
+              </div>
+            </div>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </div>
-                        <div class="contact-text">
-                            <span class="label">LinkedIn</span>
-                            <span class="value"><a href="https://linkedin.com/in/karan2001" target="_blank">linkedin.com/in/karan2001</a></span>
-                        </div>
-                    </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">Phone</span>
+                <span class="value">+91-7340795241</span>
+              </div>
+            </div>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        </div>
-                        <div class="contact-text">
-                            <span class="label">GitHub</span>
-                            <span class="value"><a href="https://github.com/karanSFS" target="_blank">github.com/karanSFS</a></span>
-                        </div>
-                    </div>
-                </section>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">Email</span>
+                <span class="value"
+                  ><a href="mailto:karanjangral60@gmail.com"
+                    >karanjangral60@gmail.com</a
+                  ></span
+                >
+              </div>
+            </div>
 
-                <!-- TECHNICAL SKILLS -->
-                <section>
-                    <h2>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                        Technical Skills
-                    </h2>
-                    
-                    <div class="skill-category">
-                        <div class="skill-title">Core Languages</div>
-                        <div class="pills">
-                            <span class="pill">TypeScript</span> <span class="pill">JavaScript (ES6+)</span> <span class="pill">SQL</span> <span class="pill">HTML5/CSS3</span>
-                        </div>
-                    </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">LinkedIn</span>
+                <span class="value"
+                  ><a href="https://linkedin.com/in/karan2001" target="_blank"
+                    >linkedin.com/in/karan2001</a
+                  ></span
+                >
+              </div>
+            </div>
 
-                    <div class="skill-category">
-                        <div class="skill-title">Frontend</div>
-                        <div class="pills">
-                            <span class="pill">Next.js (App Router)</span> <span class="pill">React.js</span> <span class="pill">Redux Toolkit</span> <span class="pill">RTK Query</span> <span class="pill">Redux Persist</span> <span class="pill">Tailwind CSS</span> <span class="pill">Ant Design</span> <span class="pill">Styled Components</span> <span class="pill">Framer Motion</span> <span class="pill">Recharts</span> <span class="pill">Vite</span>
-                        </div>
-                    </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  ></path>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">GitHub</span>
+                <span class="value"
+                  ><a href="https://github.com/karanSFS" target="_blank"
+                    >github.com/karanSFS</a
+                  ></span
+                >
+              </div>
+            </div>
 
-                    <div class="skill-category">
-                        <div class="skill-title">Backend & Server-Side</div>
-                        <div class="pills">
-                            <span class="pill">Next.js Server APIs</span> <span class="pill">Server Actions</span> <span class="pill">Route Handlers</span> <span class="pill">RESTful APIs</span> <span class="pill">Crawlee</span> <span class="pill">Cheerio</span> <span class="pill">Firecrawl</span>
-                        </div>
-                    </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="6" width="18" height="13" rx="2"></rect>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  <path d="M3 11h18"></path>
+                  <path d="M10 11v2h4v-2"></path>
+                </svg>
+              </div>
+              <div class="contact-text">
+                <span class="label">My Portfolio</span>
+                <span class="value"
+                  ><a
+                    href="https://i-am-karan-kumar.vercel.app/"
+                    target="_blank"
+                    >I am Karan</a
+                  ></span
+                >
+              </div>
+            </div>
+          </section>
 
-                    <div class="skill-category">
-                        <div class="skill-title">Databases & Auth</div>
-                        <div class="pills">
-                            <span class="pill">PostgreSQL</span> <span class="pill">Supabase (Auth / RLS)</span> <span class="pill">Neon DB</span> <span class="pill">MongoDB</span> <span class="pill">OAuth 2.0</span> <span class="pill">2FA/JWT</span>
-                        </div>
-                    </div>
+          <!-- TECHNICAL SKILLS -->
+          <section>
+            <h2>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              Technical Skills
+            </h2>
 
-                    <div class="skill-category">
-                        <div class="skill-title">Cloud & Integrations</div>
-                        <div class="pills">
-                            <span class="pill">Stripe Billing</span> <span class="pill">OpenRouter AI</span> <span class="pill">OpenAI</span> <span class="pill">Google Gemini AI</span> <span class="pill">Firebase (FCM)</span> <span class="pill">DataForSEO</span> <span class="pill">Git/GitHub</span> <span class="pill">Brevo</span> <span class="pill">Vercel</span>
-                        </div>
-                    </div>
+            <div class="skill-category">
+              <div class="skill-title">Core Languages</div>
+              <div class="pills">
+                <span class="pill">TypeScript</span>
+                <span class="pill">JavaScript (ES6+)</span>
+                <span class="pill">SQL</span>
+                <span class="pill">HTML5/CSS3</span>
+              </div>
+            </div>
 
-                    <div class="skill-category">
-                        <div class="skill-title">Tools & AI Assistants</div>
-                        <div class="pills">
-                            <span class="pill">Claude Code</span> <span class="pill">Cursor</span> <span class="pill">Antigravity</span> <span class="pill">Replit</span> <span class="pill">Lovable</span>
-                        </div>
-                    </div>
-                </section>
+            <div class="skill-category">
+              <div class="skill-title">Frontend</div>
+              <div class="pills">
+                <span class="pill">Next.js (App Router)</span>
+                <span class="pill">React.js</span>
+                <span class="pill">Redux Toolkit</span>
+                <span class="pill">RTK Query</span>
+                <span class="pill">Redux Persist</span>
+                <span class="pill">Tailwind CSS</span>
+                <span class="pill">Ant Design</span>
+                <span class="pill">Styled Components</span>
+                <span class="pill">Framer Motion</span>
+                <span class="pill">Recharts</span>
+                <span class="pill">Vite</span>
+              </div>
+            </div>
 
-                <!-- CORE COMPETENCIES -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        Core Competencies
-                    </h2>
-                    <ul class="bullet-list">
-                        <li>Full-Stack SaaS Product Architecture</li>
-                        <li>Multi-Tenant System Design</li>
-                        <li>PostgreSQL Row Level Security (RLS)</li>
-                        <li>Stripe Subscription & Billing Flows</li>
-                        <li>AI Model Integration & Pipelines</li>
-                        <li>Automated Web Crawling Engines</li>
-                        <li>State Management & Performance Tuning</li>
-                        <li>Role-Based Access Control (RBAC)</li>
-                    </ul>
-                </section>
+            <div class="skill-category">
+              <div class="skill-title">Backend & Server-Side</div>
+              <div class="pills">
+                <span class="pill">Next.js Server APIs</span>
+                <span class="pill">Server Actions</span>
+                <span class="pill">Route Handlers</span>
+                <span class="pill">RESTful APIs</span>
+                <span class="pill">Crawlee</span>
+                <span class="pill">Cheerio</span>
+                <span class="pill">Firecrawl</span>
+              </div>
+            </div>
 
-                <!-- EDUCATION -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                        Education
-                    </h2>
-                    <div class="edu-item">
-                        <div class="edu-degree">Master of Computer Applications (MCA)</div>
-                        <div class="edu-school">Guru Nanak Dev University, Amritsar<br>CGPA: 8.09/10.0 | 2021-2024</div>
-                    </div>
-                    <div class="edu-item">
-                        <div class="edu-degree">BSc Computer Science</div>
-                        <div class="edu-school">Baring Union Christian College, Batala<br>Score: 67% | 2018-2021</div>
-                    </div>
-                </section>
-                
-                <!-- LANGUAGES -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        Languages
-                    </h2>
-                    <ul class="bullet-list" style="margin-bottom: 0;">
-                        <li>English (Professional Working)</li>
-                        <li>Hindi (Native / Bilingual)</li>
-                        <li>Punjabi (Native / Bilingual)</li>
-                    </ul>
-                </section>
+            <div class="skill-category">
+              <div class="skill-title">Databases & Auth</div>
+              <div class="pills">
+                <span class="pill">PostgreSQL</span>
+                <span class="pill">Supabase (Auth / RLS)</span>
+                <span class="pill">Neon DB</span>
+                <span class="pill">MongoDB</span>
+                <span class="pill">OAuth 2.0</span>
+                <span class="pill">2FA/JWT</span>
+              </div>
+            </div>
 
-            </aside>
+            <div class="skill-category">
+              <div class="skill-title">Cloud & Integrations</div>
+              <div class="pills">
+                <span class="pill">Stripe Billing</span>
+                <span class="pill">OpenRouter AI</span>
+                <span class="pill">OpenAI</span>
+                <span class="pill">Google Gemini AI</span>
+                <span class="pill">Firebase (FCM)</span>
+                <span class="pill">DataForSEO</span>
+                <span class="pill">Git/GitHub</span>
+                <span class="pill">Brevo</span> <span class="pill">Vercel</span>
+              </div>
+            </div>
 
-            <!-- RIGHT COLUMN -->
-            <main class="right-column">
-                
-                <!-- HEADER (NAME & SUMMARY - ALWAYS FULLY VISIBLE AT TOP) -->
-                <header>
-                    <h1>Karan Kumar</h1>
-                    <div class="subtitle">
-                        Full-Stack Developer <span>•</span> Next.js <span>•</span> React <span>•</span> TypeScript <span>•</span> PostgreSQL <span>•</span> Supabase <span>•</span> AI Integration
-                    </div>
-                    <p class="summary">
-                        Full-Stack Developer with a proven record of architecting and shipping production-grade SaaS platforms and AI-powered web applications. Expert in end-to-end Next.js development server-side APIs, Server Actions, and Route Handlers combined with reactive React/TypeScript frontends. Specialized in multi-tenant database architecture, PostgreSQL/Supabase Row Level Security, Stripe billing integration, automated web crawling pipelines, and delivering scalable products in fast-paced startup environments.
-                    </p>
-                </header>
+            <div class="skill-category">
+              <div class="skill-title">Tools & AI Assistants</div>
+              <div class="pills">
+                <span class="pill">Claude Code</span>
+                <span class="pill">Cursor</span>
+                <span class="pill">Antigravity</span>
+                <span class="pill">Replit</span>
+                <span class="pill">Lovable</span>
+              </div>
+            </div>
+          </section>
 
-                <!-- PROFESSIONAL EXPERIENCE -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                        Professional Experience
-                    </h2>
-                    
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div class="exp-title-block">Sunfocus Solutions Pvt. Ltd. <span style="color:#aaa; font-weight:normal;">—</span> <span class="exp-role">Full-Stack Developer</span></div>
-                            <div class="exp-meta">Jan 2025 – Present · Punjab, India</div>
-                        </div>
-                        <ul class="bullet-list">
-                            <li>Architect and build production-grade SaaS platforms and admin portals using Next.js, React, TypeScript, PostgreSQL, and Supabase end-to-end from design to deployment.</li>
-                            <li>Design secure Server Actions, Route Handlers, database schemas, and Row Level Security (RLS) policies; integrate Stripe billing, AI pipelines, and Firebase Cloud Messaging.</li>
-                            <li>Own full deployment pipelines on Vercel and Supabase optimizing data fetching, caching strategies, and resolving critical production issues under tight deadlines.</li>
-                        </ul>
-                    </div>
+          <!-- CORE COMPETENCIES -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                ></polygon>
+              </svg>
+              Core Competencies
+            </h2>
+            <ul class="bullet-list">
+              <li>Full-Stack SaaS Product Architecture</li>
+              <li>Multi-Tenant System Design</li>
+              <li>PostgreSQL Row Level Security (RLS)</li>
+              <li>Stripe Subscription & Billing Flows</li>
+              <li>AI Model Integration & Pipelines</li>
+              <li>Automated Web Crawling Engines</li>
+              <li>State Management & Performance Tuning</li>
+              <li>Role-Based Access Control (RBAC)</li>
+            </ul>
+          </section>
 
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div class="exp-title-block">Sunfocus Solutions Pvt. Ltd. <span style="color:#aaa; font-weight:normal;">—</span> <span class="exp-role">Full-Stack Developer Intern</span></div>
-                            <div class="exp-meta">Jul 2024 – Dec 2024 · Punjab, India</div>
-                        </div>
-                        <ul class="bullet-list">
-                            <li>Built full-stack features using Next.js, React, TypeScript, and MongoDB; developed server-side API routes for authentication, session management, and data persistence.</li>
-                            <li>Engineered reusable component libraries and implemented responsive UI layouts adhering to design system standards and performance best practices.</li>
-                        </ul>
-                    </div>
-                </section>
+          <!-- EDUCATION -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+              Education
+            </h2>
+            <div class="edu-item">
+              <div class="edu-degree">
+                Master of Computer Applications (MCA)
+              </div>
+              <div class="edu-school">
+                Guru Nanak Dev University, Amritsar<br />CGPA: 8.09/10.0 |
+                2021-2024
+              </div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-degree">BSc Computer Science</div>
+              <div class="edu-school">
+                Baring Union Christian College, Batala<br />Score: 67% |
+                2018-2021
+              </div>
+            </div>
+          </section>
 
-                <!-- KEY PROJECTS -->
-                <section>
-                    <h2>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>
-                        Key Projects & Production Platforms
-                    </h2>
+          <!-- LANGUAGES -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+              Languages
+            </h2>
+            <ul class="bullet-list" style="margin-bottom: 0">
+              <li>English (Professional Working)</li>
+              <li>Hindi (Native / Bilingual)</li>
+              <li>Punjabi (Native / Bilingual)</li>
+            </ul>
+          </section>
+        </aside>
 
-                    <!-- 1. SYNCRO -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">SYNCRO <span style="color:#aaa; font-weight:normal;">—</span> Creator Monetization & Growth Platform <span class="proj-tag">Independent Project</span></div>
-                            <a href="https://syncro.net.in" class="proj-link" target="_blank">syncro.net.in ↗</a>
-                        </div>
-                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Tailwind CSS, Ant Design, Redux Toolkit, Stripe, AI Integrations, REST APIs</div>
-                        <ul class="bullet-list">
-                            <li>Built responsive creator dashboards and workflows spanning storefronts, digital products, courses, bookings, lead capture, and subscription monetization with Stripe checkout flows.</li>
-                            <li>Developed social media automation interfaces, cross-platform content publishing workflows, and AI-powered creator insights, growth analytics, and content recommendation tools.</li>
-                        </ul>
-                    </div>
+        <!-- RIGHT COLUMN -->
+        <main class="right-column">
+          <!-- HEADER (NAME & SUMMARY - ALWAYS FULLY VISIBLE AT TOP) -->
+          <header>
+            <h1>Karan Kumar</h1>
+            <div class="subtitle">
+              Full-Stack Developer <span>•</span> Next.js <span>•</span> React
+              <span>•</span> TypeScript <span>•</span> PostgreSQL
+              <span>•</span> Supabase <span>•</span> AI Integration
+            </div>
+            <p class="summary">
+              Full-Stack Developer with a proven record of architecting and
+              shipping production-grade SaaS platforms and AI-powered web
+              applications. Expert in end-to-end Next.js development server-side
+              APIs, Server Actions, and Route Handlers combined with reactive
+              React/TypeScript frontends. Specialized in multi-tenant database
+              architecture, PostgreSQL/Supabase Row Level Security, Stripe
+              billing integration, automated web crawling pipelines, and
+              delivering scalable products in fast-paced startup environments.
+            </p>
+          </header>
 
-                    <!-- 2. BirthFlow (Directly below SYNCRO) -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">BirthFlow <span style="color:#aaa; font-weight:normal;">—</span> Full-Stack Doula Care & Agency Platform <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
-                            <a href="https://www.birthflowapp.com/" class="proj-link" target="_blank">birthflowapp.com ↗</a>
-                        </div>
-                        <div class="proj-stack">Stack: Next.js, React, TypeScript, PostgreSQL, Neon, Supabase, Vercel, OpenAI, Google Calendar API, Tailwind CSS</div>
-                        <ul class="bullet-list">
-                            <li>Built full-stack Next.js SaaS managing doula client journeys from intake through pregnancy timelines, dynamic forms, cervical vitals labor tracking, and postpartum workflows.</li>
-                            <li>Engineered Neon PostgreSQL schemas, Supabase real-time sync, backup doula coordination with Google Calendar sync, and OpenAI communication assistants.</li>
-                        </ul>
-                    </div>
+          <!-- PROFESSIONAL EXPERIENCE -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+              Professional Experience
+            </h2>
 
-                    <!-- 3. SossRank -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">SossRank <span style="color:#aaa; font-weight:normal;">—</span> AI SEO & Local Business Optimization <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
-                            <a href="https://app.sossrank.com" class="proj-link" target="_blank">app.sossrank.com ↗</a>
-                        </div>
-                        <div class="proj-stack">Stack: Next.js, React, TypeScript, PostgreSQL, Supabase, Stripe, OpenRouter AI, Crawlee, Cheerio, Firecrawl, DataForSEO, Brevo, Tailwind CSS</div>
-                        <ul class="bullet-list">
-                            <li>Independently architected the full-stack SaaS platform database schema, Next.js server-side APIs, automated crawling pipelines (Crawlee, Cheerio, Firecrawl), and production deployment.</li>
-                            <li>Implemented multi-model AI workflows via OpenRouter for audit generation, automated Brevo email alerts, and recurring Stripe billing for tiered SEO reporting plans.</li>
-                        </ul>
-                    </div>
+            <div class="exp-item">
+              <div class="exp-header">
+                <div class="exp-title-block">
+                  Sunfocus Solutions Pvt. Ltd.
+                  <span style="color: #aaa; font-weight: normal">—</span>
+                  <span class="exp-role">Full-Stack Developer</span>
+                </div>
+                <div class="exp-meta">Jan 2025 – Present · Punjab, India</div>
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Architect and build production-grade SaaS platforms and admin
+                  portals using Next.js, React, TypeScript, PostgreSQL, and
+                  Supabase end-to-end from design to deployment.
+                </li>
+                <li>
+                  Design secure Server Actions, Route Handlers, database
+                  schemas, and Row Level Security (RLS) policies; integrate
+                  Stripe billing, AI pipelines, and Firebase Cloud Messaging.
+                </li>
+                <li>
+                  Own full deployment pipelines on Vercel and Supabase
+                  optimizing data fetching, caching strategies, and resolving
+                  critical production issues under tight deadlines.
+                </li>
+              </ul>
+            </div>
 
-                    <!-- 4. Market Ember -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">Market Ember <span style="color:#aaa; font-weight:normal;">—</span> Multi-Tenant Business Administration <span class="proj-tag">Sunfocus Solutions Production Platform</span></div>
-                            <span class="proj-link">Live Mobile App Admin Ecosystem</span>
-                        </div>
-                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Supabase, PostgreSQL, Redux Toolkit, Redux Persist, Firebase Cloud Messaging, Recharts, Ant Design, Tailwind CSS</div>
-                        <ul class="bullet-list">
-                            <li>Built a multi-tenant admin portal with Next.js Middleware RBAC, Supabase Auth, territory management workflows, Recharts analytics dashboards, and Firebase Cloud Messaging notifications.</li>
-                            <li>Engineered real-time data sync across mobile operations, role-based resource permissions, and optimized persistent state handling with Redux Toolkit and Persist.</li>
-                        </ul>
-                    </div>
+            <div class="exp-item">
+              <div class="exp-header">
+                <div class="exp-title-block">
+                  Sunfocus Solutions Pvt. Ltd.
+                  <span style="color: #aaa; font-weight: normal">—</span>
+                  <span class="exp-role">Full-Stack Developer Intern</span>
+                </div>
+                <div class="exp-meta">Jul 2024 – Dec 2024 · Punjab, India</div>
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built full-stack features using Next.js, React, TypeScript,
+                  and MongoDB; developed server-side API routes for
+                  authentication, session management, and data persistence.
+                </li>
+                <li>
+                  Engineered reusable component libraries and implemented
+                  responsive UI layouts adhering to design system standards and
+                  performance best practices.
+                </li>
+              </ul>
+            </div>
+          </section>
 
-                    <!-- 5. DocBot.One -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">DocBot.One <span style="color:#aaa; font-weight:normal;">—</span> AI Conversational SaaS Platform <span class="proj-tag">Sunfocus Solutions Production SaaS</span></div>
-                            <a href="https://docbot.one" class="proj-link" target="_blank">docbot.one ↗</a>
-                        </div>
-                        <div class="proj-stack">Stack: React, TypeScript, Vite, Redux Toolkit, Redux Persist, Styled Components, Ant Design, Framer Motion, Stripe</div>
-                        <ul class="bullet-list">
-                            <li>Built AI chat interface with prompt editing, response regeneration, multi-tenant team management, token tracking dashboards, 2FA auth flows, and Stripe subscription billing integration.</li>
-                            <li>Designed smooth Framer Motion micro-interactions, responsive sidebars, and client-side token consumption tracking for high-volume enterprise document querying.</li>
-                        </ul>
-                    </div>
+          <!-- KEY PROJECTS -->
+          <section>
+            <h2>
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 12 12 17 22 12"></polyline>
+                <polyline points="2 17 12 22 22 17"></polyline>
+              </svg>
+              Key Projects & Production Platforms
+            </h2>
 
-                    <!-- 6. Vora -->
-                    <div class="proj-item">
-                        <div class="proj-header">
-                            <div class="proj-title-block">Vora <span style="color:#aaa; font-weight:normal;">—</span> AI Fashion & Style Analysis Platform <span class="proj-tag">Personal Project</span></div>
-                        </div>
-                        <div class="proj-stack">Stack: Next.js, React, TypeScript, Google Gemini AI, Redux Toolkit, RTK Query, Tailwind CSS, Framer Motion</div>
-                        <ul class="bullet-list">
-                            <li>Built an AI fashion app using Gemini vision models for image-based outfit analysis and personalized styling recommendations; implemented OAuth authentication and RTK Query state caching.</li>
-                            <li>Engineered automated wardrobe breakdown tagging, outfit match scoring algorithms, and seamless media uploads optimized for fast mobile rendering.</li>
-                        </ul>
-                    </div>
+            <!-- 1. SYNCRO -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  SYNCRO
+                  <span style="color: #aaa; font-weight: normal">—</span>
+                  Creator Monetization & Growth Platform
+                  <span class="proj-tag">Independent Project</span>
+                </div>
+                <a
+                  href="https://syncro.net.in"
+                  class="proj-link"
+                  target="_blank"
+                  >syncro.net.in ↗</a
+                >
+              </div>
+              <div class="proj-stack">
+                Stack: Next.js, React, TypeScript, Tailwind CSS, Ant Design,
+                Redux Toolkit, Stripe, AI Integrations, REST APIs
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built responsive creator dashboards and workflows spanning
+                  storefronts, digital products, courses, bookings, lead
+                  capture, and subscription monetization with Stripe checkout
+                  flows.
+                </li>
+                <li>
+                  Developed social media automation interfaces, cross-platform
+                  content publishing workflows, and AI-powered creator insights,
+                  growth analytics, and content recommendation tools.
+                </li>
+              </ul>
+            </div>
 
-                </section>
-            </main>
-        </div>
+            <!-- 2. BirthFlow (Directly below SYNCRO) -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  BirthFlow
+                  <span style="color: #aaa; font-weight: normal">—</span>
+                  Full-Stack Doula Care & Agency Platform
+                  <span class="proj-tag"
+                    >Sunfocus Solutions Production SaaS</span
+                  >
+                </div>
+                <a
+                  href="https://www.birthflowapp.com/"
+                  class="proj-link"
+                  target="_blank"
+                  >birthflowapp.com ↗</a
+                >
+              </div>
+              <div class="proj-stack">
+                Stack: Next.js, React, TypeScript, PostgreSQL, Neon, Supabase,
+                Vercel, OpenAI, Google Calendar API, Tailwind CSS
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built full-stack Next.js SaaS managing doula client journeys
+                  from intake through pregnancy timelines, dynamic forms,
+                  cervical vitals labor tracking, and postpartum workflows.
+                </li>
+                <li>
+                  Engineered Neon PostgreSQL schemas, Supabase real-time sync,
+                  backup doula coordination with Google Calendar sync, and
+                  OpenAI communication assistants.
+                </li>
+              </ul>
+            </div>
+
+            <!-- 3. SossRank -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  SossRank
+                  <span style="color: #aaa; font-weight: normal">—</span> AI SEO
+                  & Local Business Optimization
+                  <span class="proj-tag"
+                    >Sunfocus Solutions Production SaaS</span
+                  >
+                </div>
+                <a
+                  href="https://app.sossrank.com"
+                  class="proj-link"
+                  target="_blank"
+                  >app.sossrank.com ↗</a
+                >
+              </div>
+              <div class="proj-stack">
+                Stack: Next.js, React, TypeScript, PostgreSQL, Supabase, Stripe,
+                OpenRouter AI, Crawlee, Cheerio, Firecrawl, DataForSEO, Brevo,
+                Tailwind CSS
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Independently architected the full-stack SaaS platform
+                  database schema, Next.js server-side APIs, automated crawling
+                  pipelines (Crawlee, Cheerio, Firecrawl), and production
+                  deployment.
+                </li>
+                <li>
+                  Implemented multi-model AI workflows via OpenRouter for audit
+                  generation, automated Brevo email alerts, and recurring Stripe
+                  billing for tiered SEO reporting plans.
+                </li>
+              </ul>
+            </div>
+
+            <!-- 4. Market Ember -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  Market Ember
+                  <span style="color: #aaa; font-weight: normal">—</span>
+                  Multi-Tenant Business Administration
+                  <span class="proj-tag"
+                    >Sunfocus Solutions Production Platform</span
+                  >
+                </div>
+                <span class="proj-link">Live Mobile App Admin Ecosystem</span>
+              </div>
+              <div class="proj-stack">
+                Stack: Next.js, React, TypeScript, Supabase, PostgreSQL, Redux
+                Toolkit, Redux Persist, Firebase Cloud Messaging, Recharts, Ant
+                Design, Tailwind CSS
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built a multi-tenant admin portal with Next.js Middleware
+                  RBAC, Supabase Auth, territory management workflows, Recharts
+                  analytics dashboards, and Firebase Cloud Messaging
+                  notifications.
+                </li>
+                <li>
+                  Engineered real-time data sync across mobile operations,
+                  role-based resource permissions, and optimized persistent
+                  state handling with Redux Toolkit and Persist.
+                </li>
+              </ul>
+            </div>
+
+            <!-- 5. DocBot.One -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  DocBot.One
+                  <span style="color: #aaa; font-weight: normal">—</span> AI
+                  Conversational SaaS Platform
+                  <span class="proj-tag"
+                    >Sunfocus Solutions Production SaaS</span
+                  >
+                </div>
+                <a href="https://docbot.one" class="proj-link" target="_blank"
+                  >docbot.one ↗</a
+                >
+              </div>
+              <div class="proj-stack">
+                Stack: React, TypeScript, Vite, Redux Toolkit, Redux Persist,
+                Styled Components, Ant Design, Framer Motion, Stripe
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built AI chat interface with prompt editing, response
+                  regeneration, multi-tenant team management, token tracking
+                  dashboards, 2FA auth flows, and Stripe subscription billing
+                  integration.
+                </li>
+                <li>
+                  Designed smooth Framer Motion micro-interactions, responsive
+                  sidebars, and client-side token consumption tracking for
+                  high-volume enterprise document querying.
+                </li>
+              </ul>
+            </div>
+
+            <!-- 6. Vora -->
+            <div class="proj-item">
+              <div class="proj-header">
+                <div class="proj-title-block">
+                  Vora
+                  <span style="color: #aaa; font-weight: normal">—</span> AI
+                  Fashion & Style Analysis Platform
+                  <span class="proj-tag">Personal Project</span>
+                </div>
+              </div>
+              <div class="proj-stack">
+                Stack: Next.js, React, TypeScript, Google Gemini AI, Redux
+                Toolkit, RTK Query, Tailwind CSS, Framer Motion
+              </div>
+              <ul class="bullet-list">
+                <li>
+                  Built an AI fashion app using Gemini vision models for
+                  image-based outfit analysis and personalized styling
+                  recommendations; implemented OAuth authentication and RTK
+                  Query state caching.
+                </li>
+                <li>
+                  Engineered automated wardrobe breakdown tagging, outfit match
+                  scoring algorithms, and seamless media uploads optimized for
+                  fast mobile rendering.
+                </li>
+              </ul>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
 
     <!-- FLOATING ACTION DOCK (STANDALONE VIEW ONLY) -->
     <aside class="cv-floating-dock" aria-label="Resume Actions">
-        <div class="dock-pill">
-            <a href="/" class="dock-btn secondary-btn" title="Back to Portfolio">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                <span>Portfolio</span>
-            </a>
-            <a href="/resume.pdf" download="Karan_Kumar_Resume.pdf" class="dock-btn primary-btn" title="Download PDF of Resume">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Download PDF</span>
-            </a>
-            <button type="button" class="dock-btn secondary-btn" onclick="printCV()" title="Print or Save as PDF">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
-                <span>Print</span>
-            </button>
-            <button type="button" class="dock-btn secondary-btn" onclick="downloadHTML()" title="Download HTML file">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                <span>Download HTML</span>
-            </button>
-        </div>
+      <div class="dock-pill">
+        <a href="/" class="dock-btn secondary-btn" title="Back to Portfolio">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          <span>Portfolio</span>
+        </a>
+        <a
+          href="/resume.pdf"
+          download="Karan_Kumar_Resume.pdf"
+          class="dock-btn primary-btn"
+          title="Download PDF of Resume"
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          <span>Download PDF</span>
+        </a>
+        <button
+          type="button"
+          class="dock-btn secondary-btn"
+          onclick="printCV()"
+          title="Print or Save as PDF"
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+            />
+            <rect width="12" height="8" x="6" y="14" />
+          </svg>
+          <span>Print</span>
+        </button>
+        <button
+          type="button"
+          class="dock-btn secondary-btn"
+          onclick="downloadHTML()"
+          title="Download HTML file"
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          <span>Download HTML</span>
+        </button>
+      </div>
     </aside>
 
     <script>
-        // Detect if loaded inside an iframe (like in /cv) and auto-hide inner floating dock
-        if (window.self !== window.top) {
-            document.body.classList.add('is-embedded');
-        }
+      // Detect if loaded inside an iframe (like in /cv) and auto-hide inner floating dock
+      if (window.self !== window.top) {
+        document.body.classList.add("is-embedded");
+      }
 
-        function printCV() {
-            window.print();
-        }
+      function printCV() {
+        window.print();
+      }
 
-        function downloadHTML() {
-            const a = document.createElement('a');
-            a.href = '/cv/karan.html';
-            a.download = 'karan.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
+      function downloadHTML() {
+        const a = document.createElement("a");
+        a.href = "/cv/karan.html";
+        a.download = "karan.html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     </script>
-</body>
+  </body>
 </html>
