@@ -8,6 +8,7 @@ Personal portfolio for Karan Kumar (Full-Stack Developer), powered by Vite, Reac
 npm install
 npm run dev
 npm run build
+npm run generate-pdf # Rebuilds public/resume.pdf from public/cv/karan.html
 npm run preview
 ```
 
