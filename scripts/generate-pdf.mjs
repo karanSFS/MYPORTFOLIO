@@ -51,9 +51,9 @@ function findChrome() {
 const chromePath = findChrome()
 
 if (!chromePath) {
-  console.error('Error: Google Chrome or Chromium executable not found.')
-  console.error('Please set CHROME_PATH environment variable to your Chrome/Chromium binary.')
-  process.exit(1)
+  console.warn('Notice: Google Chrome or Chromium not detected in this environment.')
+  console.warn('Skipping automatic PDF regeneration. Existing public/resume.pdf will be used.')
+  process.exit(0)
 }
 
 console.log(`Using Chrome binary: ${chromePath}`)
