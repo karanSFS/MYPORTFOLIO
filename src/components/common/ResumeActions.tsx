@@ -25,7 +25,7 @@ export function ResumeActions({
   if (compact) {
     return (
       <a
-        href="/cv"
+        href={resumeUrl}
         target="_blank"
         rel="noreferrer"
         onClick={onNavigate}
@@ -49,7 +49,7 @@ export function ResumeActions({
       )}
     >
       <Button
-        href="/cv"
+        href={resumeUrl}
         size={size}
         variant="secondary"
         className={layout === 'stack' ? 'w-full' : 'w-full sm:w-auto'}

@@ -9,7 +9,7 @@ export const friendOneConfig: PortfolioConfig = {
     jobTitle: 'Full-Stack Developer',
     tagline: 'Full-Stack Developer building production SaaS platforms, AI integrations & scalable cloud architectures.',
     profileImage: '/images/profile/karan.png',
-    resumeUrl: '/cv',
+    resumeUrl: '/cv/karan.html',
     email: 'karanjangral60@gmail.com',
     phone: '+91-7340795241',
     location: 'Punjab, India',
